@@ -53,7 +53,7 @@ Recital reduces the amount of time musicicans spend learing new songs.
 ### Models
 
 | Property | Type | Description |
-| --- | --- |
+| --- | --- | --- |
 | AudioFile | File | File of the audio selected by the user |
 | AudioSpeed | Float | Speed of the audio playback set by user |
 | AudioPitch | Float | Pitch/Key of the audio algorithmically analyzed and presented to the user in real time |
