@@ -19,9 +19,10 @@ Recital reduces the amount of time musicicans spend learing new songs.
 
 **Required Must-have Stories**
 
-* User can slow down music and audio.
+* User can play audio files.
 * User can scrub through audio.
-* User is shown key/pitch in real time
+* User can slow down music and audio.
+* User is shown key/pitch in real time.
 
 **Optional Nice-to-have Stories**
 
