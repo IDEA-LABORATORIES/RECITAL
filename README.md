@@ -49,15 +49,13 @@ Recital reduces the amount of time musicicans spend learing new songs.
 [Add picture of your hand sketched wireframes in this section]
 <img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/Wireframe_sketch.jpeg" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+| Property | Type | Description |
+| --- | --- |
+| AudioFile | File | File of the audio selected by the user |
+| AudioSpeed | Float | Speed of the audio playback set by user |
+| AudioPitch | Float | Pitch/Key of the audio algorithmically analyzed and presented to the user in real time |
+
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+N/A
