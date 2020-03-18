@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		BE8898802422B23E00B95706 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE88987F2422B23E00B95706 /* AppDelegate.swift */; };
 		BE8898822422B23E00B95706 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898812422B23E00B95706 /* SceneDelegate.swift */; };
-		BE8898842422B23E00B95706 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898832422B23E00B95706 /* ViewController.swift */; };
 		BE8898872422B23E00B95706 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8898852422B23E00B95706 /* Main.storyboard */; };
 		BE8898892422B23E00B95706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8898882422B23E00B95706 /* Assets.xcassets */; };
 		BE88988C2422B23E00B95706 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE88988A2422B23E00B95706 /* LaunchScreen.storyboard */; };
 		BE8898972422B23E00B95706 /* RecitalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898962422B23E00B95706 /* RecitalTests.swift */; };
 		BE8898A22422B23F00B95706 /* RecitalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898A12422B23F00B95706 /* RecitalUITests.swift */; };
+		BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 		BE88987C2422B23E00B95706 /* Recital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recital.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE88987F2422B23E00B95706 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8898812422B23E00B95706 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE8898832422B23E00B95706 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE8898862422B23E00B95706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE8898882422B23E00B95706 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE88988B2422B23E00B95706 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		BE88989D2422B23F00B95706 /* RecitalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecitalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8898A12422B23F00B95706 /* RecitalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitalUITests.swift; sourceTree = "<group>"; };
 		BE8898A32422B23F00B95706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +101,11 @@
 			children = (
 				BE88987F2422B23E00B95706 /* AppDelegate.swift */,
 				BE8898812422B23E00B95706 /* SceneDelegate.swift */,
-				BE8898832422B23E00B95706 /* ViewController.swift */,
 				BE8898852422B23E00B95706 /* Main.storyboard */,
 				BE8898882422B23E00B95706 /* Assets.xcassets */,
 				BE88988A2422B23E00B95706 /* LaunchScreen.storyboard */,
 				BE88988D2422B23E00B95706 /* Info.plist */,
+				BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */,
 			);
 			path = Recital;
 			sourceTree = "<group>";
@@ -259,9 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE8898842422B23E00B95706 /* ViewController.swift in Sources */,
 				BE8898802422B23E00B95706 /* AppDelegate.swift in Sources */,
 				BE8898822422B23E00B95706 /* SceneDelegate.swift in Sources */,
+				BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
