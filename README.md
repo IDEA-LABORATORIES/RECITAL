@@ -47,7 +47,7 @@ Recital reduces the amount of time musicicans spend learing new songs.
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/Wireframe_sketch.jpeg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
