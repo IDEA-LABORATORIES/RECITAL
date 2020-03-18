@@ -51,6 +51,7 @@ Recital reduces the amount of time musicicans spend learing new songs.
 
 ## Schema 
 ### Models
+
 | Property | Type | Description |
 | --- | --- |
 | AudioFile | File | File of the audio selected by the user |
