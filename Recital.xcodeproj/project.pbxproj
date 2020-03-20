@@ -15,6 +15,9 @@
 		BE8898972422B23E00B95706 /* RecitalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898962422B23E00B95706 /* RecitalTests.swift */; };
 		BE8898A22422B23F00B95706 /* RecitalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898A12422B23F00B95706 /* RecitalUITests.swift */; };
 		BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */; };
+		BE8898B4242540A700B95706 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B2242540A700B95706 /* AudioKitUI.framework */; };
+		BE8898B5242540A700B95706 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B3242540A700B95706 /* AudioKit.framework */; };
+		BE8898B72425441C00B95706 /* AudioSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898B62425441C00B95706 /* AudioSelector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		BE8898A12422B23F00B95706 /* RecitalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitalUITests.swift; sourceTree = "<group>"; };
 		BE8898A32422B23F00B95706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewController.swift; sourceTree = "<group>"; };
+		BE8898B2242540A700B95706 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = Recital/AudioKitUI.framework; sourceTree = "<group>"; };
+		BE8898B3242540A700B95706 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Recital/AudioKit.framework; sourceTree = "<group>"; };
+		BE8898B62425441C00B95706 /* AudioSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSelector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8898B4242540A700B95706 /* AudioKitUI.framework in Frameworks */,
+				BE8898B5242540A700B95706 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +91,7 @@
 				BE8898952422B23E00B95706 /* RecitalTests */,
 				BE8898A02422B23F00B95706 /* RecitalUITests */,
 				BE88987D2422B23E00B95706 /* Products */,
+				BE8898B1242540A700B95706 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +115,7 @@
 				BE88988A2422B23E00B95706 /* LaunchScreen.storyboard */,
 				BE88988D2422B23E00B95706 /* Info.plist */,
 				BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */,
+				BE8898B62425441C00B95706 /* AudioSelector.swift */,
 			);
 			path = Recital;
 			sourceTree = "<group>";
@@ -126,6 +136,15 @@
 				BE8898A32422B23F00B95706 /* Info.plist */,
 			);
 			path = RecitalUITests;
+			sourceTree = "<group>";
+		};
+		BE8898B1242540A700B95706 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE8898B3242540A700B95706 /* AudioKit.framework */,
+				BE8898B2242540A700B95706 /* AudioKitUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +281,7 @@
 				BE8898802422B23E00B95706 /* AppDelegate.swift in Sources */,
 				BE8898822422B23E00B95706 /* SceneDelegate.swift in Sources */,
 				BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */,
+				BE8898B72425441C00B95706 /* AudioSelector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,11 +456,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N4N5PCC9V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Recital",
+				);
 				INFOPLIST_FILE = Recital/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = asimwilliams.Recital;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -454,11 +479,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2N4N5PCC9V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Recital",
+				);
 				INFOPLIST_FILE = Recital/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-lstdc++";
 				PRODUCT_BUNDLE_IDENTIFIER = asimwilliams.Recital;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
