@@ -3,9 +3,10 @@ import UIKit
 
 class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
     var viewController: ControlPanelViewController!
+    var sandboxFileURL: URL!
     
-    public func setViewController(_ viewController: ControlPanelViewController) {
-        self.viewController = viewController
+    init(viewController: ControlPanelViewController) {
+        self.viewController  = viewController
     }
     
     // https://www.youtube.com/watch?v=p1UNnsodJxc (Dont Work)
@@ -30,7 +31,7 @@ class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate,
         print("Selected File : \(selectedFileURL)")
         
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let sandboxFileURL = dir.appendingPathComponent(selectedFileURL.lastPathComponent)
+        self.sandboxFileURL = dir.appendingPathComponent(selectedFileURL.lastPathComponent)
         
         if FileManager.default.fileExists(atPath: sandboxFileURL.path) {
             print("This file has already been copied.")
@@ -56,5 +57,9 @@ class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate,
     internal func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         print("view was cancelled")
         viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func getAudioSandboxURL () -> URL {
+        return sandboxFileURL
     }
 }

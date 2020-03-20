@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE31A18E2425685400067063 /* AudioKitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31A18D2425685400067063 /* AudioKitEngine.swift */; };
 		BE8898802422B23E00B95706 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE88987F2422B23E00B95706 /* AppDelegate.swift */; };
 		BE8898822422B23E00B95706 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898812422B23E00B95706 /* SceneDelegate.swift */; };
 		BE8898872422B23E00B95706 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8898852422B23E00B95706 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE31A18D2425685400067063 /* AudioKitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitEngine.swift; sourceTree = "<group>"; };
 		BE88987C2422B23E00B95706 /* Recital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recital.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE88987F2422B23E00B95706 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8898812422B23E00B95706 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				BE88988D2422B23E00B95706 /* Info.plist */,
 				BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */,
 				BE8898B62425441C00B95706 /* AudioSelector.swift */,
+				BE31A18D2425685400067063 /* AudioKitEngine.swift */,
 			);
 			path = Recital;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE31A18E2425685400067063 /* AudioKitEngine.swift in Sources */,
 				BE8898802422B23E00B95706 /* AppDelegate.swift in Sources */,
 				BE8898822422B23E00B95706 /* SceneDelegate.swift in Sources */,
 				BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */,
