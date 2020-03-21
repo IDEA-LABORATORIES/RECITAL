@@ -15,7 +15,7 @@ class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate,
     public func selectAudio() {
         /* https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html
         */
-        let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.mp3"], in: .import)
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.audio"], in: .import)
         
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
