@@ -11,7 +11,7 @@ MAD Final Project
 
 ## Overview
 ### Description
-Recital reduces the amount of time musicicans spend learing new songs.
+Recital reduces the amount of time musicicans spend learning new songs.
 
 ## Product Spec
 
