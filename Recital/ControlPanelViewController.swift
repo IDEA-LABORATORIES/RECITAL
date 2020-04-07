@@ -4,7 +4,7 @@ class ControlPanelViewController: UIViewController {
 
     var audioSelector: AudioSelector!
     var audioKitEngine: AudioKitEngine!
-    var playCount: Int = 0
+//    var playCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,17 +19,20 @@ class ControlPanelViewController: UIViewController {
     // TODO: Disable button if audioSandboxFileURL is null.
     // TODO: Changing volume on simulator breaks play.
     var playPauseToggle: Int = 0
-    @IBAction func onPlay(_ sender: Any) {
+    var playerStarted: Int = 0
+    @IBAction func onPlay(_ sender: UIButton) {
         if (playPauseToggle == 0) {
-            if (playCount == 0) {
+            if (playerStarted == 0) {
                 audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
-                playCount += 1
+                playerStarted = 1
             }
             audioKitEngine.play()
             playPauseToggle = 1;
+            sender.setTitle("Pause", for: .normal)
         } else {
             audioKitEngine.pause()
             playPauseToggle = 0
+            sender.setTitle("Play", for: .normal)
         }
     }
     
