@@ -10,11 +10,13 @@ class ControlPanelViewController: UIViewController {
     
     var uiEnabled = false
     var playPauseToggle: Int = 0
-    
+    var lengthOfSong: String = ""
+
     // Outlets
     @IBOutlet weak var playbackPositionSlider: UISlider!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var loopingToggle: UISwitch!
+    @IBOutlet weak var currentPosInSong: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +52,11 @@ class ControlPanelViewController: UIViewController {
             
             playbackPositionSlider.isEnabled = true;
             playbackPositionSlider.maximumValue = Float(audioKitEngine.getAudioFileDuration())
+            
+            let totalMin = Int(playbackPositionSlider.maximumValue) / 60 % 60
+            let totalSec = Int(playbackPositionSlider.maximumValue) % 60
+            lengthOfSong = String(format:"%02i:%02i", totalMin, totalSec)
+            
             playPauseButton.isEnabled = true
             loopingToggle.isEnabled = true
             
@@ -68,6 +75,11 @@ class ControlPanelViewController: UIViewController {
     
     public func updatePlaybackPositionSlider() {
         playbackPositionSlider.value = audioKitEngine.getCurrentPositionInAudio()
+        let currMin = (Int(playbackPositionSlider.value) / 60) % 60
+        let currSec = Int(playbackPositionSlider.value) % 60
+        let currPIS = String(format:"%02i:%02i", currMin, currSec)
+        
+        currentPosInSong.text = currPIS + "/" + lengthOfSong
     }
     
     // TODO: Changing volume on simulator breaks play.
