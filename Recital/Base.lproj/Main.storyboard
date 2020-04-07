@@ -61,11 +61,19 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00/0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCy-1Q-a7x">
+                                <rect key="frame" x="150" y="124" width="114" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="currentPosInSong" destination="QCy-1Q-a7x" id="O6D-6z-HN1"/>
                         <outlet property="loopingToggle" destination="iwe-5K-HPG" id="047-zU-gX3"/>
                         <outlet property="playPauseButton" destination="a6y-3J-dcD" id="a2J-QM-ZKR"/>
                         <outlet property="playbackPositionSlider" destination="eSy-JQ-CFs" id="wtK-Yh-cmG"/>
