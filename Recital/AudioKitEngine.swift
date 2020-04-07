@@ -21,7 +21,6 @@ class AudioKitEngine {
         
         // AudioKitPlayer node uses audio file as input.
         player = AKPlayer(audioFile: selectedAudio)
-        player.completionHandler = { AKLog("completion callback has been triggered!") }
         
         player.isLooping = true
         // Sound that comes out speakers is set as player output.
@@ -69,5 +68,10 @@ class AudioKitEngine {
     
     public func getCurrentPositionInAudio() -> Float {
         return Float(player.currentTime)
+    }
+    
+    // probably not great encaspulation... but works for now.
+    public func getAudioPlayer() -> AKPlayer {
+        return player
     }
 }

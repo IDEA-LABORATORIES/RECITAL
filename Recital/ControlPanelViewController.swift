@@ -4,6 +4,7 @@ class ControlPanelViewController: UIViewController {
 
     var audioSelector: AudioSelector!
     var audioKitEngine: AudioKitEngine!
+    
     var audioFileSelectedTimer: Timer!
     var updatePlaybackPositionSliderTimer: Timer!
     
@@ -38,7 +39,15 @@ class ControlPanelViewController: UIViewController {
             playPauseButton.isEnabled = false
             loopingToggle.isEnabled = false
         } else {
+            // Initialize audioEngine
             audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
+            // Decide what happens when file reaches end and loop is off.
+            audioKitEngine.getAudioPlayer().completionHandler = {
+                self.audioKitEngine.getAudioPlayer().setPosition(0)
+                self.playPauseToggle = 0
+                self.playPauseButton.setTitle("Play", for: .normal)
+            }
+            
             playbackPositionSlider.isEnabled = true;
             playbackPositionSlider.maximumValue = Float(audioKitEngine.getAudioFileDuration())
             playPauseButton.isEnabled = true
