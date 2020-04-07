@@ -4,6 +4,7 @@ import UIKit
 class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate, UINavigationControllerDelegate {
     var viewController: ControlPanelViewController!
     var sandboxFileURL: URL!
+    var audioFileHasBeenSelected = false
     
     init(viewController: ControlPanelViewController) {
         self.viewController  = viewController
@@ -47,6 +48,7 @@ class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate,
                 print("Error: \(error)")
             }
         }
+        audioFileHasBeenSelected = true
     }
 
     internal func documentMenu(_ documentMenu:UIDocumentMenuViewController, didPickDocumentPicker documentPicker: UIDocumentPickerViewController) {
@@ -61,5 +63,9 @@ class AudioSelector: NSObject, UIDocumentMenuDelegate, UIDocumentPickerDelegate,
     
     func getAudioSandboxURL () -> URL {
         return sandboxFileURL
+    }
+    
+    public func getAudioFileHasBeenSelected() -> Bool {
+        return audioFileHasBeenSelected
     }
 }
