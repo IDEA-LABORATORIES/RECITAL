@@ -19,10 +19,10 @@ Recital reduces the amount of time musicicans spend learning new songs.
 
 **Required Must-have Stories**
 
-* User can play audio files.
-* User can scrub through audio.
-* User can slow down music and audio.
-* User is shown key/pitch in real time.
+* [x] User can play audio files.
+* [x] User can scrub through audio.
+* [ ] User can slow down music and audio.
+* [ ] User is shown key/pitch in real time.
 
 **Optional Nice-to-have Stories**
 
@@ -61,3 +61,8 @@ Recital reduces the amount of time musicicans spend learning new songs.
 
 ### Networking
 N/A
+
+## Video Walkthrough
+### User can play and scrub through their selected audio file
+<a href="https://imgflip.com/gif/3vrb6d"><img src="https://i.imgflip.com/3vrb6d.gif" title=""/></a>
+
