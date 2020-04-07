@@ -64,5 +64,4 @@ N/A
 
 ## Video Walkthrough
 ### User can play and scrub through their selected audio file
-<a href="https://imgflip.com/gif/3vrb6d"><img src="https://i.imgflip.com/3vrb6d.gif" title=""/></a>
-
+<a href="https://imgflip.com/gif/3vrn7e"><img src="https://i.imgflip.com/3vrn7e.gif" title=""/></a>
