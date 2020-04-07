@@ -9,6 +9,7 @@ class AudioKitEngine {
     var selectedAudio: AKAudioFile!
     var playCount: Int = 0
     
+    // Called in ControlPanelViewController.
     init(audioSandboxFileURL: URL) {
         self.audioSandboxFileURL = audioSandboxFileURL
     }
@@ -51,6 +52,19 @@ class AudioKitEngine {
         }
         player.play()
     }
+    
+    /** Pause:
+     let wasPlaying = player.isPlaying
+     if wasPlaying { player.stop() }
+     */
+    // Pause
+    public func pause() {
+        if (player.isPlaying) {
+            player.pause()
+        }
+    }
+    
+    // Scrubbing: Look at playingPositionSlider
     
     public func toggleLooping() {
         print(player.isLooping)

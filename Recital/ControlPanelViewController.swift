@@ -17,12 +17,20 @@ class ControlPanelViewController: UIViewController {
     }
     
     // TODO: Disable button if audioSandboxFileURL is null.
+    // TODO: Changing volume on simulator breaks play.
+    var playPauseToggle: Int = 0
     @IBAction func onPlay(_ sender: Any) {
-        if (playCount == 0) {
-            audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
-            playCount += 1
+        if (playPauseToggle == 0) {
+            if (playCount == 0) {
+                audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
+                playCount += 1
+            }
+            audioKitEngine.play()
+            playPauseToggle = 1;
+        } else {
+            audioKitEngine.pause()
+            playPauseToggle = 0
         }
-        audioKitEngine.play()
     }
     
     @IBAction func onToggleLooping(_ sender: Any) {
