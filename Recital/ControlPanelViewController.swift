@@ -6,7 +6,7 @@ class ControlPanelViewController: UIViewController {
     var audioKitEngine: AudioKitEngine!
     
     var audioFileSelectedTimer: Timer!
-    var updatePlaybackPositionSliderTimer: Timer!
+    var updatePlaybackAttributeSlidersTimer: Timer!
     
     var uiEnabled = false
     var playPauseToggle: Int = 0
@@ -14,22 +14,30 @@ class ControlPanelViewController: UIViewController {
 
     // Outlets
     @IBOutlet weak var playbackPositionSlider: UISlider!
+    @IBOutlet weak var playbackRateSlider: UISlider!
+    
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var loopingToggle: UISwitch!
+    
     @IBOutlet weak var currentPosInSong: UILabel!
+    @IBOutlet weak var currentPlaybackRate: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         audioSelector = AudioSelector(viewController: self)
         // Do any additional setup after loading the view.
+        playbackRateSlider.minimumValue = Float(0.25)
+        playbackRateSlider.maximumValue = Float(2)
+        playbackRateSlider.value = Float(1)
         
         // Check to see if user has selected an audio file
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             self.checkAudioFileSelected()
         })
-        updatePlaybackPositionSliderTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
+        updatePlaybackAttributeSlidersTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             if (self.uiEnabled) {
                 self.updatePlaybackPositionSlider()
+                self.currentPlaybackRate.text = String(format:"%.02f", self.playbackRateSlider.value)
             }
         })
     }
@@ -40,6 +48,9 @@ class ControlPanelViewController: UIViewController {
             playbackPositionSlider.isEnabled = false
             playPauseButton.isEnabled = false
             loopingToggle.isEnabled = false
+            playbackRateSlider.isEnabled = false
+            currentPosInSong.isEnabled = false
+            currentPlaybackRate.isEnabled = false
         } else {
             // Initialize audioEngine
             audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
@@ -59,6 +70,11 @@ class ControlPanelViewController: UIViewController {
             
             playPauseButton.isEnabled = true
             loopingToggle.isEnabled = true
+            
+            currentPosInSong.isEnabled = true
+            currentPlaybackRate.isEnabled = true
+            
+            playbackRateSlider.isEnabled = true
             
             uiEnabled = true
             self.audioFileSelectedTimer.invalidate()
@@ -80,6 +96,12 @@ class ControlPanelViewController: UIViewController {
         let currPIS = String(format:"%02i:%02i", currMin, currSec)
         
         currentPosInSong.text = currPIS + "/" + lengthOfSong
+    }
+    
+    // Im pretty sure every other IOS app that changes audio playback rate does exactly the same thing.
+    // It sounds exactly the same as transcribe (IOS app)
+    @IBAction func setPlaybackRate(_ sender: Any) {
+        audioKitEngine.setPlaybackRate(sliderPos: Double(playbackRateSlider.value))
     }
     
     // TODO: Changing volume on simulator breaks play.
