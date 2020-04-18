@@ -6,7 +6,8 @@ class ControlPanelViewController: UIViewController {
     var audioKitEngine: AudioKitEngine!
     
     var audioFileSelectedTimer: Timer!
-    var updatePlaybackAttributeSlidersTimer: Timer!
+    var updateSlidersTimer: Timer!
+    var updateAudioAnalysisUI: Timer!
     
     var uiEnabled = false
     var playPauseToggle: Int = 0
@@ -22,6 +23,10 @@ class ControlPanelViewController: UIViewController {
     @IBOutlet weak var currentPosInSong: UILabel!
     @IBOutlet weak var currentPlaybackRate: UILabel!
     
+    @IBOutlet weak var noteFrequency: UILabel!
+    @IBOutlet weak var noteNameWSharps: UILabel!
+    @IBOutlet weak var noteNameWFlats: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         audioSelector = AudioSelector(viewController: self)
@@ -34,10 +39,15 @@ class ControlPanelViewController: UIViewController {
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             self.checkAudioFileSelected()
         })
-        updatePlaybackAttributeSlidersTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
+        updateSlidersTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             if (self.uiEnabled) {
                 self.updatePlaybackPositionSlider()
                 self.currentPlaybackRate.text = String(format:"%.02f", self.playbackRateSlider.value)
+            }
+        })
+        updateAudioAnalysisUI = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
+            if(self.uiEnabled) {
+                self.updateAudioAnalysisInfo()
             }
         })
     }
@@ -120,5 +130,14 @@ class ControlPanelViewController: UIViewController {
     // TODO: What todo when file reaches end and looping is off.
     @IBAction func onLoopingToggle(_ sender: UISwitch) {
         audioKitEngine.toggleLooping(loop: sender.isOn)
+    }
+    
+    func updateAudioAnalysisInfo() {
+        let notes = audioKitEngine.determineNote()
+        
+        noteFrequency.text = String(format: "%0.1f", audioKitEngine.getFrequency())
+        
+        noteNameWSharps.text = notes[0]
+        noteNameWFlats.text = notes[1]
     }
 }
