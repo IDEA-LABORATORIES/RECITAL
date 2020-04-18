@@ -3,6 +3,8 @@ import AudioKit
 class AudioKitEngine {
     // Declare audio playback node
     var player: AKPlayer!
+    // Declare Time and Pitch node
+    var timeAndPitchManipulator: AKTimePitch!
     
     // Instance Variables
     var audioSandboxFileURL: URL
@@ -23,11 +25,12 @@ class AudioKitEngine {
         player = AKPlayer(audioFile: selectedAudio)
         
         player.isLooping = true
-        // Sound that comes out speakers is set as player output.
-        AudioKit.output = player
         
+        // Output from player node (audioplayer) is input for time and pitch maniplator node
+        timeAndPitchManipulator = AKTimePitch(player)
         
-        
+        // Sound that comes out speakers is set as timeAndPitchManipulator output.
+        AudioKit.output = timeAndPitchManipulator
         do {
             try AudioKit.start()
         } catch {
@@ -55,6 +58,10 @@ class AudioKitEngine {
         if (playPauseToggle == 1) {
             player.play()
         }
+    }
+    
+    public func setPlaybackRate(sliderPos: Double) {
+        timeAndPitchManipulator.rate = sliderPos
     }
     
     public func toggleLooping(loop: Bool) {
