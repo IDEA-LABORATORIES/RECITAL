@@ -22,13 +22,13 @@ Recital reduces the amount of time musicicans spend learning new songs.
 * [x] User can play audio files.
 * [x] User can seek through audio.
 * [x] User can slow down music and audio.
-* [ ] User is shown key/pitch in real time.
+* [x] User is shown note values in real time.
 
 **Optional Nice-to-have Stories**
 
+* User can filter low and high frequencies
 * User can add loops and flags to organize audio.
 * User can adjust pitch of audio
-* User can filter low and high frequencies
 * User can save edited audio
 
 ### 2. Screen Archetypes
@@ -68,3 +68,6 @@ N/A
 
 ### User can change rate of audio playback
 <a href="https://imgflip.com/gif/3x410e"><img src="https://i.imgflip.com/3x410e.gif" title=""/></a>
+
+### User can view notes of song in realtime
+<a href="https://imgflip.com/gif/3x5v89"><img src="https://i.imgflip.com/3x5v89.gif" title=""/></a>
