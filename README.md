@@ -21,7 +21,7 @@ Recital reduces the amount of time musicicans spend learning new songs.
 
 * [x] User can play audio files.
 * [x] User can seek through audio.
-* [ ] User can slow down music and audio.
+* [x] User can slow down music and audio.
 * [ ] User is shown key/pitch in real time.
 
 **Optional Nice-to-have Stories**
@@ -65,3 +65,6 @@ N/A
 ## Video Walkthrough
 ### User can play and seek through their selected audio file
 <a href="https://imgflip.com/gif/3vrn7e"><img src="https://i.imgflip.com/3vrn7e.gif" title=""/></a>
+
+### User can change rate of audio playback
+<a href="https://imgflip.com/gif/3x410e"><img src="https://i.imgflip.com/3x410e.gif" title=""/></a>
