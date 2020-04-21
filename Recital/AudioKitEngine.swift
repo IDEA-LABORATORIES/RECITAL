@@ -5,6 +5,8 @@ class AudioKitEngine {
     var player: AKPlayer!
     // Declare Time and Pitch node
     var timeAndPitchManipulator: AKTimePitch!
+    // Declare Bandpass Filter node
+    var bandpassFilter: AKBandPassButterworthFilter!
     // Declare Frequency Tracking node
     var frequencyTracker: AKFrequencyTracker!
     
@@ -31,8 +33,12 @@ class AudioKitEngine {
         // Output from player node (audioplayer) is input for time and pitch maniplator node
         timeAndPitchManipulator = AKTimePitch(player)
         
-        // Output form time and pitch maniplator node is input for frequency tracking node
-        frequencyTracker = AKFrequencyTracker(timeAndPitchManipulator)
+        // Output from time and pitch manipulator node is input for bandpass filer node
+        bandpassFilter = AKBandPassButterworthFilter(timeAndPitchManipulator)
+        bandpassFilter.rampDuration = 1.0
+        
+        // Output form bandpass filter node is input for frequency tracking node
+        frequencyTracker = AKFrequencyTracker(bandpassFilter)
         
         // Sound that comes out speakers is set as timeAndPitchManipulator output.
         AudioKit.output = frequencyTracker
@@ -42,6 +48,8 @@ class AudioKitEngine {
             AKLog("AudioKit did not start")
         }
     }
+    
+//-------------------------------------------Playback Start-----------------------------------------------------------------
     
     public func play() {
         player.play()
@@ -73,6 +81,39 @@ class AudioKitEngine {
         player.isLooping = loop
     }
     
+    // Getters
+    public func getAudioFileDuration() -> Double {
+        return selectedAudio.duration
+    }
+    
+    public func getCurrentPositionInAudio() -> Float {
+        return Float(player.currentTime)
+    }
+    
+    // probably not great encaspulation... but works for now.
+    public func getAudioPlayer() -> AKPlayer {
+        return player
+    }
+//------------------------------------------- Playback End ------------------------------------------------------------
+    
+//-------------------------------------- Filter Start -----------------------------------------------------
+    public func setBandpassFilterCenter(centerSliderPos: Double) {
+        bandpassFilter.centerFrequency = centerSliderPos
+    }
+    
+    public func setBandPassFilterBandwidth(bandwidthSliderPos: Double) {
+        bandpassFilter.bandwidth = bandwidthSliderPos
+    }
+    
+    public func toggleFilter(filter: Bool) {
+        if(filter) {
+            bandpassFilter.start()
+        } else {
+            bandpassFilter.stop()
+        }
+    }
+//-------------------------------------- Filter End -------------------------------------------------------
+
 //------------------------------------- Audio Analysis Start ------------------------------
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
@@ -107,18 +148,4 @@ class AudioKitEngine {
         return notes
     }
 //------------------------------------- Audio Analysis End --------------------------------
-    
-    // Getters
-    public func getAudioFileDuration() -> Double {
-        return selectedAudio.duration
-    }
-    
-    public func getCurrentPositionInAudio() -> Float {
-        return Float(player.currentTime)
-    }
-    
-    // probably not great encaspulation... but works for now.
-    public func getAudioPlayer() -> AKPlayer {
-        return player
-    }
 }
