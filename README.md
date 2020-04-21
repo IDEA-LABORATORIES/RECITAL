@@ -7,7 +7,9 @@ MAD Final Project
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+1. [Schema](#Schema)
+1. [Video Walkthrough](#Video-Walkthrough)
+
 
 ## Overview
 ### Description
