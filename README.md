@@ -71,3 +71,6 @@ N/A
 
 ### User can view notes of song in realtime
 <a href="https://imgflip.com/gif/3x5v89"><img src="https://i.imgflip.com/3x5v89.gif" title=""/></a>
+
+### User can filter high and low frequencies
+<a href="https://imgflip.com/gif/3xk9j0"><img src="https://i.imgflip.com/3xk9j0.gif" title=""/></a>
