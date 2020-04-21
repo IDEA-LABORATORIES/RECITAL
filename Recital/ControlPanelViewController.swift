@@ -8,6 +8,7 @@ class ControlPanelViewController: UIViewController {
     var audioFileSelectedTimer: Timer!
     var updateSlidersTimer: Timer!
     var updateAudioAnalysisUI: Timer!
+    var updateFilterUITimer: Timer!
     
     var uiEnabled = false
     var playPauseToggle: Int = 0
@@ -16,6 +17,13 @@ class ControlPanelViewController: UIViewController {
     // Outlets
     @IBOutlet weak var playbackPositionSlider: UISlider!
     @IBOutlet weak var playbackRateSlider: UISlider!
+    
+    @IBOutlet weak var bandpassCenterFreqSlider: UISlider!
+    @IBOutlet weak var bandpassBandwidthSlider: UISlider!
+    
+    @IBOutlet weak var bandpassCenterFreqLabel: UILabel!
+    @IBOutlet weak var bandpassBandwidthSliderLabel: UILabel!
+    @IBOutlet weak var bandpassFilterToggle: UISwitch!
     
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var loopingToggle: UISwitch!
@@ -35,14 +43,27 @@ class ControlPanelViewController: UIViewController {
         playbackRateSlider.maximumValue = Float(2)
         playbackRateSlider.value = Float(1)
         
+        // Filter setup
+        bandpassCenterFreqSlider.minimumValue = Float(20)
+        bandpassCenterFreqSlider.maximumValue = Float(10_000)
+        bandpassBandwidthSlider.minimumValue = Float(100)
+        bandpassBandwidthSlider.maximumValue = Float(1_200)
+        bandpassFilterToggle.isOn = false
+        
         // Check to see if user has selected an audio file
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             self.checkAudioFileSelected()
         })
         updateSlidersTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             if (self.uiEnabled) {
+                // Playback
                 self.updatePlaybackPositionSlider()
-                self.currentPlaybackRate.text = String(format:"%.02f", self.playbackRateSlider.value)
+                self.currentPlaybackRate.text = String(format:"Playback Rate: %.02f", self.playbackRateSlider.value)
+            }
+        })
+        updateFilterUITimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
+            if(self.uiEnabled) {
+                self.updateFilterUI()
             }
         })
         updateAudioAnalysisUI = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
@@ -52,6 +73,7 @@ class ControlPanelViewController: UIViewController {
         })
     }
     
+    // File Selection
     // If audio file has not been selected disable UI
     func checkAudioFileSelected() {
         if (!audioSelector.getAudioFileHasBeenSelected()) {
@@ -61,6 +83,11 @@ class ControlPanelViewController: UIViewController {
             playbackRateSlider.isEnabled = false
             currentPosInSong.isEnabled = false
             currentPlaybackRate.isEnabled = false
+            bandpassCenterFreqSlider.isEnabled = false
+            bandpassCenterFreqLabel.isEnabled = false
+            bandpassBandwidthSlider.isEnabled = false
+            bandpassBandwidthSliderLabel.isEnabled = false
+            bandpassFilterToggle.isEnabled = false
         } else {
             // Initialize audioEngine
             audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
@@ -86,6 +113,12 @@ class ControlPanelViewController: UIViewController {
             
             playbackRateSlider.isEnabled = true
             
+            bandpassCenterFreqSlider.isEnabled = true
+            bandpassCenterFreqLabel.isEnabled = true
+            bandpassBandwidthSlider.isEnabled = true
+            bandpassBandwidthSliderLabel.isEnabled = true
+            bandpassFilterToggle.isEnabled = true
+            
             uiEnabled = true
             self.audioFileSelectedTimer.invalidate()
         }
@@ -95,6 +128,7 @@ class ControlPanelViewController: UIViewController {
         audioSelector.selectAudio()
     }
     
+    // Playback
     @IBAction func setPlaybackPosition(_ sender: Any) {
         audioKitEngine.setPlaybackPosition(sliderPos: Double(playbackPositionSlider!.value), playPauseToggle: playPauseToggle)
     }
@@ -127,11 +161,29 @@ class ControlPanelViewController: UIViewController {
         }
     }
     
-    // TODO: What todo when file reaches end and looping is off.
     @IBAction func onLoopingToggle(_ sender: UISwitch) {
         audioKitEngine.toggleLooping(loop: sender.isOn)
     }
     
+    // Filter
+    @IBAction func setBandpassCenterFreq(_ sender: Any) {
+        audioKitEngine.setBandpassFilterCenter(centerSliderPos: Double(bandpassCenterFreqSlider.value))
+    }
+    
+    @IBAction func setBandpassBandwidth(_ sender: Any) {
+        audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthSlider.value))
+    }
+    
+    @IBAction func onFilterToggle(_ sender: UISwitch) {
+        audioKitEngine.toggleFilter(filter: sender.isOn)
+    }
+    
+    func updateFilterUI() {
+        bandpassCenterFreqLabel.text = String(format: "Center Freq: %0.1f Hz", bandpassCenterFreqSlider.value)
+        bandpassBandwidthSliderLabel.text = String(format: "Bandwidth: %0.1f Hz", bandpassBandwidthSlider.value)
+    }
+    
+    // Audio Analysis
     func updateAudioAnalysisInfo() {
         let notes = audioKitEngine.determineNote()
         
