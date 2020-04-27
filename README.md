@@ -7,7 +7,9 @@ MAD Final Project
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+1. [Schema](#Schema)
+1. [Video Walkthrough](#Video-Walkthrough)
+
 
 ## Overview
 ### Description
@@ -26,10 +28,11 @@ Recital reduces the amount of time musicicans spend learning new songs.
 
 **Optional Nice-to-have Stories**
 
+* [ ] User can adjust pitch of audio
+* [ ] Waveform view
+* [ ] A/B Looping
 * [x] User can filter low and high frequencies
-* User can add loops and flags to organize audio.
-* User can adjust pitch of audio
-* User can save edited audio
+* [ ] User can save edited audio
 
 ### 2. Screen Archetypes
 
@@ -71,3 +74,6 @@ N/A
 
 ### User can view notes of song in realtime
 <a href="https://imgflip.com/gif/3x5v89"><img src="https://i.imgflip.com/3x5v89.gif" title=""/></a>
+
+### User can filter high and low frequencies
+<a href="https://imgflip.com/gif/3xk9j0"><img src="https://i.imgflip.com/3xk9j0.gif" title=""/></a>
