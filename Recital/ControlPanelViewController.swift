@@ -18,9 +18,8 @@ class ControlPanelViewController: UIViewController {
     @IBOutlet weak var playbackPositionSlider: UISlider!
     @IBOutlet weak var playbackRateSlider: UISlider!
     
-    @IBOutlet weak var bandpassCenterFreqSlider: UISlider!
-    @IBOutlet weak var bandpassBandwidthSlider: UISlider!
-    
+    @IBOutlet weak var bandpassCenterFreqKnob: Knob!
+    @IBOutlet weak var bandpassBandwidthKnob: Knob!
     @IBOutlet weak var bandpassCenterFreqLabel: UILabel!
     @IBOutlet weak var bandpassBandwidthSliderLabel: UILabel!
     @IBOutlet weak var bandpassFilterToggle: UISwitch!
@@ -44,11 +43,17 @@ class ControlPanelViewController: UIViewController {
         playbackRateSlider.value = Float(1)
         
         // Filter setup
-        bandpassCenterFreqSlider.minimumValue = Float(20)
-        bandpassCenterFreqSlider.maximumValue = Float(10_000)
-        bandpassBandwidthSlider.minimumValue = Float(100)
-        bandpassBandwidthSlider.maximumValue = Float(1_200)
         bandpassFilterToggle.isOn = false
+        // Knob
+        bandpassCenterFreqKnob.minimumValue = Float(20)
+        bandpassCenterFreqKnob.maximumValue = Float(10_000)
+        bandpassBandwidthKnob.minimumValue = Float(100)
+        bandpassBandwidthKnob.maximumValue = Float(1_200)
+        bandpassCenterFreqKnob.lineWidth = 4
+        bandpassCenterFreqKnob.pointerLength = 1
+        bandpassBandwidthKnob.lineWidth = 4
+        bandpassBandwidthKnob.pointerLength = 1
+        // Knob End
         
         // Check to see if user has selected an audio file
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
@@ -59,11 +64,6 @@ class ControlPanelViewController: UIViewController {
                 // Playback
                 self.updatePlaybackPositionSlider()
                 self.currentPlaybackRate.text = String(format:"Playback Rate: %.02f", self.playbackRateSlider.value)
-            }
-        })
-        updateFilterUITimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
-            if(self.uiEnabled) {
-                self.updateFilterUI()
             }
         })
         updateAudioAnalysisUI = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
@@ -83,9 +83,9 @@ class ControlPanelViewController: UIViewController {
             playbackRateSlider.isEnabled = false
             currentPosInSong.isEnabled = false
             currentPlaybackRate.isEnabled = false
-            bandpassCenterFreqSlider.isEnabled = false
+            bandpassCenterFreqKnob.isEnabled = false
             bandpassCenterFreqLabel.isEnabled = false
-            bandpassBandwidthSlider.isEnabled = false
+            bandpassBandwidthKnob.isEnabled = false
             bandpassBandwidthSliderLabel.isEnabled = false
             bandpassFilterToggle.isEnabled = false
         } else {
@@ -113,9 +113,9 @@ class ControlPanelViewController: UIViewController {
             
             playbackRateSlider.isEnabled = true
             
-            bandpassCenterFreqSlider.isEnabled = true
+            bandpassCenterFreqKnob.isEnabled = true
             bandpassCenterFreqLabel.isEnabled = true
-            bandpassBandwidthSlider.isEnabled = true
+            bandpassBandwidthKnob.isEnabled = true
             bandpassBandwidthSliderLabel.isEnabled = true
             bandpassFilterToggle.isEnabled = true
             
@@ -166,12 +166,19 @@ class ControlPanelViewController: UIViewController {
     }
     
     // Filter
-    @IBAction func setBandpassCenterFreq(_ sender: Any) {
-        audioKitEngine.setBandpassFilterCenter(centerSliderPos: Double(bandpassCenterFreqSlider.value))
+    //knob
+    @IBAction func changeBandpassCenterFreq(_ sender: Knob) {
+        if (bandpassFilterToggle.isOn) {
+            audioKitEngine.setBandpassFilterCenter(centerSliderPos: Double(bandpassCenterFreqKnob.value))
+            updateFilterUI()
+        }
     }
     
-    @IBAction func setBandpassBandwidth(_ sender: Any) {
-        audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthSlider.value))
+    @IBAction func changeBandpassBandwidth(_ sender: Knob) {
+        if (bandpassFilterToggle.isOn) {
+            audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthKnob.value))
+            updateFilterUI()
+        }
     }
     
     @IBAction func onFilterToggle(_ sender: UISwitch) {
@@ -179,8 +186,8 @@ class ControlPanelViewController: UIViewController {
     }
     
     func updateFilterUI() {
-        bandpassCenterFreqLabel.text = String(format: "Center Freq: %0.1f Hz", bandpassCenterFreqSlider.value)
-        bandpassBandwidthSliderLabel.text = String(format: "Bandwidth: %0.1f Hz", bandpassBandwidthSlider.value)
+        bandpassCenterFreqLabel.text = String(format: "Center Freq: %0.1f Hz", bandpassCenterFreqKnob.value)
+        bandpassBandwidthSliderLabel.text = String(format: "Bandwidth: %0.1f Hz", bandpassBandwidthKnob.value)
     }
     
     // Audio Analysis
