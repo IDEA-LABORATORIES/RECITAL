@@ -4,9 +4,12 @@ class AudioKitEngine {
     // Declare audio playback node
     var player: AKPlayer!
     // Declare Time and Pitch node
-    var timeAndPitchManipulator: AKTimePitch!
+    var timeManipulator: AKTimePitch!
+    var pitchManipulator: AKTimePitch!
     // Declare Bandpass Filter node
     var bandpassFilter: AKBandPassButterworthFilter!
+    // Declare Booster Node
+    var booster: AKBooster!
     // Declare Frequency Tracking node
     var frequencyTracker: AKFrequencyTracker!
     
@@ -31,14 +34,25 @@ class AudioKitEngine {
         player.isLooping = true
         
         // Output from player node (audioplayer) is input for time and pitch maniplator node
-        timeAndPitchManipulator = AKTimePitch(player)
+        timeManipulator = AKTimePitch(player)
+        
+        //
+        pitchManipulator = AKTimePitch(timeManipulator)
+        pitchManipulator.bypass()
         
         // Output from time and pitch manipulator node is input for bandpass filer node
-        bandpassFilter = AKBandPassButterworthFilter(timeAndPitchManipulator)
-        bandpassFilter.rampDuration = 1.0
+        bandpassFilter = AKBandPassButterworthFilter(pitchManipulator)
+        bandpassFilter.bypass()
+        bandpassFilter.rampDuration = 0.5
         
-        // Output form bandpass filter node is input for frequency tracking node
-        frequencyTracker = AKFrequencyTracker(bandpassFilter)
+        // Output from bandpassFilter node is input for booster node
+        // Filtering makes signal quiet so im using this to make it louder
+        booster = AKBooster(bandpassFilter)
+        booster.dB = 12
+        booster.bypass()
+        
+        // Output form booster node is input for frequency tracking node
+        frequencyTracker = AKFrequencyTracker(booster)
         
         // Sound that comes out speakers is set as timeAndPitchManipulator output.
         AudioKit.output = frequencyTracker
@@ -74,7 +88,7 @@ class AudioKitEngine {
     }
     
     public func setPlaybackRate(sliderPos: Double) {
-        timeAndPitchManipulator.rate = sliderPos
+        timeManipulator.rate = sliderPos
     }
     
     public func toggleLooping(loop: Bool) {
@@ -96,7 +110,7 @@ class AudioKitEngine {
     }
 //------------------------------------------- Playback End ------------------------------------------------------------
     
-//-------------------------------------- Filter Start -----------------------------------------------------
+//-------------------------------------- Filter & Ptich Start -----------------------------------------------------
     public func setBandpassFilterCenter(centerSliderPos: Double) {
         bandpassFilter.centerFrequency = centerSliderPos
     }
@@ -105,14 +119,29 @@ class AudioKitEngine {
         bandpassFilter.bandwidth = bandwidthSliderPos
     }
     
-    public func toggleFilter(filter: Bool) {
-        if(filter) {
+    public func toggleFilter(filterOn: Bool) {
+        if(filterOn) {
             bandpassFilter.start()
+            booster.start()
         } else {
-            bandpassFilter.stop()
+            bandpassFilter.bypass()
+            booster.bypass()
         }
     }
-//-------------------------------------- Filter End -------------------------------------------------------
+    
+    public func shiftPitch(value: Double) {
+        // In cents. 100 cents = half-step/semitone. 12 semitones per octave. 2 octaves up or down.
+        pitchManipulator.pitch = value
+    }
+    
+    public func turnPitchShiftOnOff(shifterOn: Bool) {
+        if (shifterOn) {
+            pitchManipulator.start()
+        } else {
+            pitchManipulator.bypass()
+        }
+    }
+//-------------------------------------- Filter & Pitch End -------------------------------------------------------
 
 //------------------------------------- Audio Analysis Start ------------------------------
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]

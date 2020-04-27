@@ -201,8 +201,7 @@ private class KnobRenderer {
   private func updateTrackLayerPath() {
     let bounds = trackLayer.bounds
     let center = CGPoint(x: bounds.midX, y: bounds.midY)
-    let offset = max(pointerLength, lineWidth  / 2)
-    let radius = min(bounds.width, bounds.height) / 2 - offset
+    let radius = min(bounds.width, bounds.height) / 2
 
     let ring = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
     trackLayer.path = ring.cgPath
