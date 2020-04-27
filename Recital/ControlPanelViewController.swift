@@ -12,20 +12,26 @@ class ControlPanelViewController: UIViewController {
     
     var uiEnabled = false
     var playPauseToggle: Int = 0
+    var pitchShiftOn: Bool = false
+    var filterOn: Bool = false
+    var loopingOn: Bool = true
     var lengthOfSong: String = ""
 
     // Outlets
     @IBOutlet weak var playbackPositionSlider: UISlider!
     @IBOutlet weak var playbackRateSlider: UISlider!
     
+    @IBOutlet weak var pitchShiftKnob: Knob!
+    @IBOutlet weak var pitchShiftOnOffButton: UIButton!
+    
+    @IBOutlet weak var filterOnOffButton: UIButton!
     @IBOutlet weak var bandpassCenterFreqKnob: Knob!
     @IBOutlet weak var bandpassBandwidthKnob: Knob!
     @IBOutlet weak var bandpassCenterFreqLabel: UILabel!
     @IBOutlet weak var bandpassBandwidthSliderLabel: UILabel!
-    @IBOutlet weak var bandpassFilterToggle: UISwitch!
     
     @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var loopingToggle: UISwitch!
+    @IBOutlet weak var loopingOnOffButton: UIButton!
     
     @IBOutlet weak var currentPosInSong: UILabel!
     @IBOutlet weak var currentPlaybackRate: UILabel!
@@ -42,18 +48,21 @@ class ControlPanelViewController: UIViewController {
         playbackRateSlider.maximumValue = Float(2)
         playbackRateSlider.value = Float(1)
         
-        // Filter setup
-        bandpassFilterToggle.isOn = false
-        // Knob
+        // Filter & Pitch setup
+        pitchShiftKnob.minimumValue = -2_400
+        pitchShiftKnob.maximumValue = 2400
+        pitchShiftKnob.setValue(0)
+        pitchShiftKnob.lineWidth = 3
+        pitchShiftKnob.pointerLength = 18
+        
         bandpassCenterFreqKnob.minimumValue = Float(20)
         bandpassCenterFreqKnob.maximumValue = Float(10_000)
         bandpassBandwidthKnob.minimumValue = Float(100)
         bandpassBandwidthKnob.maximumValue = Float(1_200)
-        bandpassCenterFreqKnob.lineWidth = 4
-        bandpassCenterFreqKnob.pointerLength = 1
-        bandpassBandwidthKnob.lineWidth = 4
-        bandpassBandwidthKnob.pointerLength = 1
-        // Knob End
+        bandpassCenterFreqKnob.lineWidth = 3
+        bandpassCenterFreqKnob.pointerLength = 18
+        bandpassBandwidthKnob.lineWidth = 3
+        bandpassBandwidthKnob.pointerLength = 18
         
         // Check to see if user has selected an audio file
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
@@ -77,17 +86,7 @@ class ControlPanelViewController: UIViewController {
     // If audio file has not been selected disable UI
     func checkAudioFileSelected() {
         if (!audioSelector.getAudioFileHasBeenSelected()) {
-            playbackPositionSlider.isEnabled = false
-            playPauseButton.isEnabled = false
-            loopingToggle.isEnabled = false
-            playbackRateSlider.isEnabled = false
-            currentPosInSong.isEnabled = false
-            currentPlaybackRate.isEnabled = false
-            bandpassCenterFreqKnob.isEnabled = false
-            bandpassCenterFreqLabel.isEnabled = false
-            bandpassBandwidthKnob.isEnabled = false
-            bandpassBandwidthSliderLabel.isEnabled = false
-            bandpassFilterToggle.isEnabled = false
+            disableUI()
         } else {
             // Initialize audioEngine
             audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
@@ -98,30 +97,54 @@ class ControlPanelViewController: UIViewController {
                 self.playPauseButton.setTitle("Play", for: .normal)
             }
             
-            playbackPositionSlider.isEnabled = true;
-            playbackPositionSlider.maximumValue = Float(audioKitEngine.getAudioFileDuration())
-            
-            let totalMin = Int(playbackPositionSlider.maximumValue) / 60 % 60
-            let totalSec = Int(playbackPositionSlider.maximumValue) % 60
-            lengthOfSong = String(format:"%02i:%02i", totalMin, totalSec)
-            
-            playPauseButton.isEnabled = true
-            loopingToggle.isEnabled = true
-            
-            currentPosInSong.isEnabled = true
-            currentPlaybackRate.isEnabled = true
-            
-            playbackRateSlider.isEnabled = true
-            
-            bandpassCenterFreqKnob.isEnabled = true
-            bandpassCenterFreqLabel.isEnabled = true
-            bandpassBandwidthKnob.isEnabled = true
-            bandpassBandwidthSliderLabel.isEnabled = true
-            bandpassFilterToggle.isEnabled = true
-            
-            uiEnabled = true
+            enableUI()
             self.audioFileSelectedTimer.invalidate()
         }
+    }
+    
+    func disableUI() {
+        playbackPositionSlider.isEnabled = false
+        playPauseButton.isEnabled = false
+        loopingOnOffButton.isEnabled = false
+        playbackRateSlider.isEnabled = false
+        currentPosInSong.isEnabled = false
+        currentPlaybackRate.isEnabled = false
+        
+        // Filter & Pitch
+        pitchShiftOnOffButton.isEnabled = false
+        pitchShiftKnob.isEnabled = false
+        bandpassCenterFreqKnob.isEnabled = false
+        bandpassCenterFreqLabel.isEnabled = false
+        bandpassBandwidthKnob.isEnabled = false
+        bandpassBandwidthSliderLabel.isEnabled = false
+        filterOnOffButton.isEnabled = false
+    }
+    
+    func enableUI() {
+        playbackPositionSlider.isEnabled = true;
+        playbackPositionSlider.maximumValue = Float(audioKitEngine.getAudioFileDuration())
+        
+        let totalMin = Int(playbackPositionSlider.maximumValue) / 60 % 60
+        let totalSec = Int(playbackPositionSlider.maximumValue) % 60
+        lengthOfSong = String(format:"%02i:%02i", totalMin, totalSec)
+        
+        playPauseButton.isEnabled = true
+        loopingOnOffButton.isEnabled = true
+        
+        currentPosInSong.isEnabled = true
+        currentPlaybackRate.isEnabled = true
+        
+        playbackRateSlider.isEnabled = true
+        
+        pitchShiftOnOffButton.isEnabled = true
+        pitchShiftKnob.isEnabled = true
+        bandpassCenterFreqKnob.isEnabled = true
+        bandpassCenterFreqLabel.isEnabled = true
+        bandpassBandwidthKnob.isEnabled = true
+        bandpassBandwidthSliderLabel.isEnabled = true
+        filterOnOffButton.isEnabled = true
+        
+        uiEnabled = true
     }
     
     @IBAction func onSelectAudio(_ sender: Any) {
@@ -161,28 +184,52 @@ class ControlPanelViewController: UIViewController {
         }
     }
     
-    @IBAction func onLoopingToggle(_ sender: UISwitch) {
-        audioKitEngine.toggleLooping(loop: sender.isOn)
+    
+    @IBAction func handleLoopingOnOff(_ sender: UIButton) {
+        if (loopingOn) {
+            audioKitEngine.toggleLooping(loop: false)
+            loopingOn = false
+        } else {
+            audioKitEngine.toggleLooping(loop: true)
+            loopingOn = true
+        }
+        
     }
     
-    // Filter
-    //knob
-    @IBAction func changeBandpassCenterFreq(_ sender: Knob) {
-        if (bandpassFilterToggle.isOn) {
-            audioKitEngine.setBandpassFilterCenter(centerSliderPos: Double(bandpassCenterFreqKnob.value))
-            updateFilterUI()
+    // Filter & Pitch
+    @IBAction func handlePitchShiftOnOff(_ sender: UIButton) {
+        if (pitchShiftOn) {
+            audioKitEngine.turnPitchShiftOnOff(shifterOn: false)
+            pitchShiftOn = false
+        } else {
+            audioKitEngine.turnPitchShiftOnOff(shifterOn: true)
+            pitchShiftOn = true
         }
+        
+    }
+    
+    @IBAction func handlePitchShit(_ sender: Knob) {
+        audioKitEngine.shiftPitch(value: Double(pitchShiftKnob.value))
+    }
+    
+    @IBAction func changeBandpassCenterFreq(_ sender: Knob) {
+        audioKitEngine.setBandpassFilterCenter(centerSliderPos: Double(bandpassCenterFreqKnob.value))
+        updateFilterUI()
     }
     
     @IBAction func changeBandpassBandwidth(_ sender: Knob) {
-        if (bandpassFilterToggle.isOn) {
-            audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthKnob.value))
+        audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthKnob.value))
             updateFilterUI()
-        }
     }
     
-    @IBAction func onFilterToggle(_ sender: UISwitch) {
-        audioKitEngine.toggleFilter(filter: sender.isOn)
+    @IBAction func handleFilterOnOff(_ sender: Any) {
+        if (filterOn) {
+            audioKitEngine.toggleFilter(filterOn: false)
+            filterOn = false
+        } else {
+            audioKitEngine.toggleFilter(filterOn: true)
+            filterOn = true
+        }
     }
     
     func updateFilterUI() {

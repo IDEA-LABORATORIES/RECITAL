@@ -23,29 +23,13 @@
                                     <action selector="onSelectAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S36-nk-G3M"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-3J-dcD">
-                                <rect key="frame" x="163" y="545" width="88" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="onPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tmr-R3-EYn"/>
-                                </connections>
-                            </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iwe-5K-HPG">
-                                <rect key="frame" x="314" y="544" width="49" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-JQ-CFs">
+                                <rect key="frame" x="22" y="476" width="370" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="onLoopingToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="TJa-x9-i45"/>
+                                    <action selector="setPlaybackPosition:" destination="BYZ-38-t0r" eventType="valueChanged" id="NYq-Kh-e0T"/>
                                 </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAP-w0-VQi">
-                                <rect key="frame" x="314" y="515" width="47" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
+                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00/0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCy-1Q-a7x">
                                 <rect key="frame" x="150" y="248" width="114" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -130,30 +114,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-AU-mjN">
-                                <rect key="frame" x="233" y="735" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="onFilterToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="5hJ-4e-tjX"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7A-dF-ccg">
-                                <rect key="frame" x="237" y="706" width="39" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qjj-P4-F1Z" customClass="Knob" customModule="Recital" customModuleProvider="target">
-                                <rect key="frame" x="171" y="774" width="72" height="72"/>
+                                <rect key="frame" x="161" y="774" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <action selector="changeBandpassCenterFreq:" destination="BYZ-38-t0r" eventType="valueChanged" id="yef-zo-Z4w"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A8i-41-Cmh" customClass="Knob" customModule="Recital" customModuleProvider="target">
+                                <rect key="frame" x="24" y="774" width="90" height="90"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <action selector="changeBandpassCenterFreq:" destination="BYZ-38-t0r" eventType="valueChanged" id="WXG-Mc-0Aa"/>
+                                    <action selector="handlePitchShit:" destination="BYZ-38-t0r" eventType="valueChanged" id="Q3R-mE-mEQ"/>
+                                </connections>
+                            </view>
                             <view contentMode="scaleToFill" id="ToQ-8K-mIV" customClass="Knob" customModule="Recital" customModuleProvider="target">
-                                <rect key="frame" x="301" y="774" width="72" height="72"/>
+                                <rect key="frame" x="301" y="774" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <viewLayoutGuide key="safeArea" id="TNt-Xp-RdL"/>
@@ -162,13 +141,39 @@
                                     <action selector="changeBandpassCenterFreq:" destination="BYZ-38-t0r" eventType="valueChanged" id="RNU-aQ-q3a"/>
                                 </connections>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-JQ-CFs">
-                                <rect key="frame" x="22" y="476" width="370" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vsm-4W-rgh">
+                                <rect key="frame" x="20" y="735" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="setPlaybackPosition:" destination="BYZ-38-t0r" eventType="valueChanged" id="NYq-Kh-e0T"/>
+                                    <action selector="handlePitchShiftOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8tb-CH-CCX"/>
                                 </connections>
-                            </slider>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYh-Jg-6O3">
+                                <rect key="frame" x="86" y="545" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="loop"/>
+                                <connections>
+                                    <action selector="handleLoopingOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ftq-nv-Lex"/>
+                                    <action selector="handlePitchShiftOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8L7-Bp-Sgu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DdH-OW-fbr">
+                                <rect key="frame" x="247" y="735" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="handleFilterOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9aw-HQ-wFD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-3J-dcD">
+                                <rect key="frame" x="184" y="545" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="onPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tmr-R3-EYn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -178,13 +183,15 @@
                         <outlet property="bandpassBandwidthSliderLabel" destination="j5U-WL-Idf" id="YfI-8k-UN3"/>
                         <outlet property="bandpassCenterFreqKnob" destination="qjj-P4-F1Z" id="Ipt-82-xjW"/>
                         <outlet property="bandpassCenterFreqLabel" destination="DEa-Ev-ZHa" id="sU2-1A-IDk"/>
-                        <outlet property="bandpassFilterToggle" destination="F1u-AU-mjN" id="Ukc-FC-H2Y"/>
                         <outlet property="currentPlaybackRate" destination="GeQ-Y4-RfW" id="6dw-9l-xnF"/>
                         <outlet property="currentPosInSong" destination="QCy-1Q-a7x" id="O6D-6z-HN1"/>
-                        <outlet property="loopingToggle" destination="iwe-5K-HPG" id="047-zU-gX3"/>
+                        <outlet property="filterOnOffButton" destination="DdH-OW-fbr" id="HSM-hg-OMP"/>
+                        <outlet property="loopingOnOffButton" destination="hYh-Jg-6O3" id="gDE-Cp-DRC"/>
                         <outlet property="noteFrequency" destination="2Gp-p4-TfI" id="T44-14-oEV"/>
                         <outlet property="noteNameWFlats" destination="fRv-9C-QSw" id="Z70-gS-x9F"/>
                         <outlet property="noteNameWSharps" destination="aNt-yf-raW" id="O5f-00-Nhi"/>
+                        <outlet property="pitchShiftKnob" destination="A8i-41-Cmh" id="amQ-Fb-Nht"/>
+                        <outlet property="pitchShiftOnOffButton" destination="Vsm-4W-rgh" id="Dnq-KH-gnF"/>
                         <outlet property="playPauseButton" destination="a6y-3J-dcD" id="a2J-QM-ZKR"/>
                         <outlet property="playbackPositionSlider" destination="eSy-JQ-CFs" id="wtK-Yh-cmG"/>
                         <outlet property="playbackRateSlider" destination="bfX-hH-ELn" id="SmO-fo-6Vp"/>
