@@ -42,6 +42,7 @@ class ControlPanelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "app_background.png")!)
         audioSelector = AudioSelector(viewController: self)
         // Do any additional setup after loading the view.
         playbackRateSlider.minimumValue = Float(0.25)
