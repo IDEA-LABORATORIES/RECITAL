@@ -6,6 +6,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="RobotoMono-Medium.ttf">
+            <string>RobotoMono-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Control Panel View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -73,29 +78,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-JQ-CFs">
-                                <rect key="frame" x="22" y="468" width="370" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="setPlaybackPosition:" destination="BYZ-38-t0r" eventType="valueChanged" id="NYq-Kh-e0T"/>
-                                </connections>
-                            </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00/0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCy-1Q-a7x">
                                 <rect key="frame" x="150" y="277" width="114" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="bfX-hH-ELn">
-                                <rect key="frame" x="2" y="663" width="411" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="setPlaybackRate:" destination="BYZ-38-t0r" eventType="valueChanged" id="ad8-2F-ixg"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playback Rate: 1.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeQ-Y4-RfW">
-                                <rect key="frame" x="92" y="623" width="229" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -140,14 +124,6 @@
                                 <state key="normal" image="power_btn_off"/>
                                 <connections>
                                     <action selector="handleFilterOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9aw-HQ-wFD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-3J-dcD">
-                                <rect key="frame" x="184" y="505" width="44" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="onPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tmr-R3-EYn"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A8i-41-Cmh" customClass="Knob" customModule="Recital" customModuleProvider="target">
@@ -196,8 +172,16 @@
                                     <action selector="changeBandpassCenterFreq:" destination="BYZ-38-t0r" eventType="valueChanged" id="RNU-aQ-q3a"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6y-3J-dcD">
+                                <rect key="frame" x="184" y="557" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="onPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tmr-R3-EYn"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYh-Jg-6O3">
-                                <rect key="frame" x="54" y="505" width="44" height="44"/>
+                                <rect key="frame" x="54" y="557" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="loop"/>
                                 <connections>
@@ -205,6 +189,34 @@
                                     <action selector="handlePitchShiftOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8L7-Bp-Sgu"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGB-qT-lBV">
+                                <rect key="frame" x="15" y="626" width="382" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="slider_background" translatesAutoresizingMaskIntoConstraints="NO" id="fpZ-YR-pU6">
+                                <rect key="frame" x="4" y="609" width="405" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="slider_image" translatesAutoresizingMaskIntoConstraints="NO" id="ePz-Tt-f9t">
+                                <rect key="frame" x="3" y="626" width="407" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="speed: 1.00x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeQ-Y4-RfW">
+                                <rect key="frame" x="307" y="609" width="90" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="RobotoMono-Medium" family="Roboto Mono" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eSy-JQ-CFs">
+                                <rect key="frame" x="22" y="505" width="370" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="setPlaybackPosition:" destination="BYZ-38-t0r" eventType="valueChanged" id="NYq-Kh-e0T"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -225,7 +237,7 @@
                         <outlet property="pitchShiftOnOffButton" destination="Vsm-4W-rgh" id="Dnq-KH-gnF"/>
                         <outlet property="playPauseButton" destination="a6y-3J-dcD" id="a2J-QM-ZKR"/>
                         <outlet property="playbackPositionSlider" destination="eSy-JQ-CFs" id="wtK-Yh-cmG"/>
-                        <outlet property="playbackRateSlider" destination="bfX-hH-ELn" id="SmO-fo-6Vp"/>
+                        <outlet property="playbackRateSliderView" destination="DGB-qT-lBV" id="q2v-35-u6S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -240,6 +252,8 @@
         <image name="pitch_knob" width="92" height="92"/>
         <image name="power_btn_off" width="32" height="32"/>
         <image name="select_and_display_file" width="414" height="69"/>
+        <image name="slider_background" width="409" height="89"/>
+        <image name="slider_image" width="411" height="72"/>
         <image name="width_knob" width="92" height="92"/>
     </resources>
 </document>

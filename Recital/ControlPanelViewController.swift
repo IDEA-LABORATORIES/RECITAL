@@ -19,7 +19,8 @@ class ControlPanelViewController: UIViewController {
 
     // Outlets
     @IBOutlet weak var playbackPositionSlider: UISlider!
-    @IBOutlet weak var playbackRateSlider: UISlider!
+    @IBOutlet var playbackRateSliderView: UIView!
+    let customPlaybackRateSlider = CustomSlider(frame: .zero)
     
     @IBOutlet weak var pitchShiftKnob: Knob!
     @IBOutlet weak var pitchShiftOnOffButton: UIButton!
@@ -43,28 +44,17 @@ class ControlPanelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "app_background.png")!)
+        view.addSubview(customPlaybackRateSlider)
         audioSelector = AudioSelector(viewController: self)
-        // Do any additional setup after loading the view.
-        playbackRateSlider.minimumValue = Float(0.25)
-        playbackRateSlider.maximumValue = Float(2)
-        playbackRateSlider.value = Float(1)
         
-        // Filter & Pitch setup
-        pitchShiftKnob.minimumValue = -2_400
-        pitchShiftKnob.maximumValue = 2400
-        pitchShiftKnob.setValue(0)
-        pitchShiftKnob.lineWidth = 3
-        pitchShiftKnob.pointerLength = 18
+        // The actual playback rate = thumbValue * 2 (TODO)
+        customPlaybackRateSlider.thumbValue = 0.5
+        customPlaybackRateSlider.addTarget(self, action: #selector(customPlaybackRateSliderValueChanged(_:)),
+        for: .valueChanged)
         
-        bandpassCenterFreqKnob.minimumValue = Float(20)
-        bandpassCenterFreqKnob.maximumValue = Float(10_000)
-        bandpassBandwidthKnob.minimumValue = Float(100)
-        bandpassBandwidthKnob.maximumValue = Float(1_200)
-        bandpassCenterFreqKnob.lineWidth = 3
-        bandpassCenterFreqKnob.pointerLength = 18
-        bandpassBandwidthKnob.lineWidth = 3
-        bandpassBandwidthKnob.pointerLength = 18
+        setupFilterAndPitch()
         
+        // Timers
         // Check to see if user has selected an audio file
         audioFileSelectedTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             self.checkAudioFileSelected()
@@ -73,7 +63,7 @@ class ControlPanelViewController: UIViewController {
             if (self.uiEnabled) {
                 // Playback
                 self.updatePlaybackPositionSlider()
-                self.currentPlaybackRate.text = String(format:"Playback Rate: %.02f", self.playbackRateSlider.value)
+                self.currentPlaybackRate.text = String(format:"speed: %.02fx", self.customPlaybackRateSlider.thumbValue * 2)
             }
         })
         updateAudioAnalysisUI = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { (Timer) in
@@ -81,6 +71,14 @@ class ControlPanelViewController: UIViewController {
                 self.updateAudioAnalysisInfo()
             }
         })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let width = 382
+      let height: CGFloat = 68
+      
+        customPlaybackRateSlider.frame = CGRect(x: 0, y: 614, width: width, height: Int(height))
+        customPlaybackRateSlider.center = playbackRateSliderView.center
     }
     
     // File Selection
@@ -107,7 +105,7 @@ class ControlPanelViewController: UIViewController {
         playbackPositionSlider.isEnabled = false
         playPauseButton.isEnabled = false
         loopingOnOffButton.isEnabled = false
-        playbackRateSlider.isEnabled = false
+        customPlaybackRateSlider.isEnabled = false
         currentPosInSong.isEnabled = false
         currentPlaybackRate.isEnabled = false
         
@@ -135,7 +133,7 @@ class ControlPanelViewController: UIViewController {
         currentPosInSong.isEnabled = true
         currentPlaybackRate.isEnabled = true
         
-        playbackRateSlider.isEnabled = true
+        customPlaybackRateSlider.isEnabled = true
         
         pitchShiftOnOffButton.isEnabled = true
         pitchShiftKnob.isEnabled = true
@@ -168,8 +166,8 @@ class ControlPanelViewController: UIViewController {
     
     // Im pretty sure every other IOS app that changes audio playback rate does exactly the same thing.
     // It sounds exactly the same as transcribe (IOS app)
-    @IBAction func setPlaybackRate(_ sender: Any) {
-        audioKitEngine.setPlaybackRate(sliderPos: Double(playbackRateSlider.value))
+    @objc func customPlaybackRateSliderValueChanged(_ customSlider: CustomSlider) {
+        audioKitEngine.setPlaybackRate(sliderPos: Double((customSlider.thumbValue) * 2))
     }
     
     // TODO: Changing volume on simulator breaks play.
@@ -198,13 +196,32 @@ class ControlPanelViewController: UIViewController {
     }
     
     // Filter & Pitch
+    func setupFilterAndPitch() {
+        pitchShiftKnob.minimumValue = -2_400
+        pitchShiftKnob.maximumValue = 2400
+        pitchShiftKnob.setValue(0)
+        pitchShiftKnob.lineWidth = 3
+        pitchShiftKnob.pointerLength = 18
+        
+        bandpassCenterFreqKnob.minimumValue = Float(20)
+        bandpassCenterFreqKnob.maximumValue = Float(10_000)
+        bandpassBandwidthKnob.minimumValue = Float(100)
+        bandpassBandwidthKnob.maximumValue = Float(1_200)
+        bandpassCenterFreqKnob.lineWidth = 3
+        bandpassCenterFreqKnob.pointerLength = 18
+        bandpassBandwidthKnob.lineWidth = 3
+        bandpassBandwidthKnob.pointerLength = 18
+    }
+    
     @IBAction func handlePitchShiftOnOff(_ sender: UIButton) {
         if (pitchShiftOn) {
             audioKitEngine.turnPitchShiftOnOff(shifterOn: false)
             pitchShiftOn = false
+            sender.setImage(UIImage(named: "power_btn_off.png")!, for: .normal)
         } else {
             audioKitEngine.turnPitchShiftOnOff(shifterOn: true)
             pitchShiftOn = true
+            sender.setImage(UIImage(named: "power_btn_on.png")!, for: .normal)
         }
         
     }
@@ -223,13 +240,15 @@ class ControlPanelViewController: UIViewController {
             updateFilterUI()
     }
     
-    @IBAction func handleFilterOnOff(_ sender: Any) {
+    @IBAction func handleFilterOnOff(_ sender: UIButton) {
         if (filterOn) {
             audioKitEngine.toggleFilter(filterOn: false)
             filterOn = false
+            sender.setImage(UIImage(named: "power_btn_off.png")!, for: .normal)
         } else {
             audioKitEngine.toggleFilter(filterOn: true)
             filterOn = true
+            sender.setImage(UIImage(named: "power_btn_on.png")!, for: .normal)
         }
     }
     
