@@ -28,6 +28,7 @@
 
 import UIKit
 
+// https://www.raywenderlich.com/5294-how-to-make-a-custom-control-tutorial-a-reusable-knob#toc-anchor-003
 class Knob: UIControl {
   /** Contains the minimum value of the receiver. */
   var minimumValue: Float = 0

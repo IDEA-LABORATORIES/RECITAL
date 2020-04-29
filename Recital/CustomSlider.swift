@@ -1,5 +1,6 @@
 import UIKit
 
+// https://www.raywenderlich.com/7595-how-to-make-a-custom-control-tutorial-a-reusable-slider#
 class CustomSlider: UIControl {
 
     // Describes the state of the control
