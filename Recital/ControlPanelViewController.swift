@@ -1,4 +1,5 @@
 import UIKit
+import DSWaveformImage
 
 class ControlPanelViewController: UIViewController {
 
@@ -18,6 +19,9 @@ class ControlPanelViewController: UIViewController {
     var lengthOfSong: String = ""
 
     // Outlets
+    @IBOutlet weak var waveformScrollView: UIScrollView!
+    @IBOutlet weak var waveformImageView: UIImageView!
+    
     @IBOutlet weak var playbackPositionSlider: UISlider!
     @IBOutlet var playbackRateSliderView: UIView!
     let customPlaybackRateSlider = CustomSlider(frame: .zero)
@@ -39,19 +43,13 @@ class ControlPanelViewController: UIViewController {
     
     @IBOutlet weak var noteFrequency: UILabel!
     @IBOutlet weak var noteNameWSharps: UILabel!
-    @IBOutlet weak var noteNameWFlats: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "app_background.png")!)
-        view.addSubview(customPlaybackRateSlider)
         audioSelector = AudioSelector(viewController: self)
-        
-        // The actual playback rate = thumbValue * 2 (TODO)
-        customPlaybackRateSlider.thumbValue = 0.5
-        customPlaybackRateSlider.addTarget(self, action: #selector(customPlaybackRateSliderValueChanged(_:)),
-        for: .valueChanged)
-        
+        playbackPositionSlider.setThumbImage(#imageLiteral(resourceName: "playback_slider_thumb"), for: .normal)
+        setupPlaybackRateSlider()
         setupFilterAndPitch()
         
         // Timers
@@ -87,17 +85,40 @@ class ControlPanelViewController: UIViewController {
         if (!audioSelector.getAudioFileHasBeenSelected()) {
             disableUI()
         } else {
+            // Audio Waveform
+            drawWaveform()
+            
             // Initialize audioEngine
-            audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
-            // Decide what happens when file reaches end and loop is off.
-            audioKitEngine.getAudioPlayer().completionHandler = {
-                self.audioKitEngine.getAudioPlayer().setPosition(0)
-                self.playPauseToggle = 0
-                self.playPauseButton.setTitle("Play", for: .normal)
-            }
+            initializeAudioEngine()
             
             enableUI()
             self.audioFileSelectedTimer.invalidate()
+        }
+    }
+    
+    func drawWaveform() {
+        let audioURL = audioSelector.getAudioSandboxURL()
+        
+        // Waveform image drawer (takes ~15 seconds)
+        let waveformImageDrawer = WaveformImageDrawer()
+        waveformImageDrawer.waveformImage(fromAudioAt: audioURL,
+                                          size: waveformImageView.bounds.size,
+                                          style: .striped,
+                                          position: .middle) { image in
+            // need to jump back to main queue
+            DispatchQueue.main.async {
+                self.waveformImageView.image = image
+            }
+        }
+    }
+    
+    func initializeAudioEngine() {
+        audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
+        // Decide what happens when file reaches end and loop is off.
+        audioKitEngine.getAudioPlayer().completionHandler = {
+            self.audioKitEngine.getAudioPlayer().setPosition(0)
+            self.playPauseToggle = 0
+            self.playPauseButton.setTitle("Play", for: .normal)
         }
     }
     
@@ -164,6 +185,14 @@ class ControlPanelViewController: UIViewController {
         currentPosInSong.text = currPIS + "/" + lengthOfSong
     }
     
+    func setupPlaybackRateSlider() {
+        // The actual playback rate = thumbValue * 2 (TODO)
+        customPlaybackRateSlider.thumbValue = 0.5
+        customPlaybackRateSlider.addTarget(self, action: #selector(customPlaybackRateSliderValueChanged(_:)),
+        for: .valueChanged)
+        view.addSubview(customPlaybackRateSlider)
+    }
+    
     // Im pretty sure every other IOS app that changes audio playback rate does exactly the same thing.
     // It sounds exactly the same as transcribe (IOS app)
     @objc func customPlaybackRateSliderValueChanged(_ customSlider: CustomSlider) {
@@ -200,16 +229,16 @@ class ControlPanelViewController: UIViewController {
         pitchShiftKnob.minimumValue = -2_400
         pitchShiftKnob.maximumValue = 2400
         pitchShiftKnob.setValue(0)
-        pitchShiftKnob.lineWidth = 3
+        pitchShiftKnob.lineWidth = 4
         pitchShiftKnob.pointerLength = 18
         
         bandpassCenterFreqKnob.minimumValue = Float(20)
         bandpassCenterFreqKnob.maximumValue = Float(10_000)
         bandpassBandwidthKnob.minimumValue = Float(100)
         bandpassBandwidthKnob.maximumValue = Float(1_200)
-        bandpassCenterFreqKnob.lineWidth = 3
+        bandpassCenterFreqKnob.lineWidth = 4
         bandpassCenterFreqKnob.pointerLength = 18
-        bandpassBandwidthKnob.lineWidth = 3
+        bandpassBandwidthKnob.lineWidth = 4
         bandpassBandwidthKnob.pointerLength = 18
     }
     
@@ -261,9 +290,8 @@ class ControlPanelViewController: UIViewController {
     func updateAudioAnalysisInfo() {
         let notes = audioKitEngine.determineNote()
         
-        noteFrequency.text = String(format: "%0.1f", audioKitEngine.getFrequency())
+        noteFrequency.text = String(format: "Frequency: %0.2fHz", audioKitEngine.getFrequency())
         
         noteNameWSharps.text = notes[0]
-        noteNameWFlats.text = notes[1]
     }
 }
