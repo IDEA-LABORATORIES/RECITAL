@@ -28,7 +28,7 @@ Recital reduces the amount of time musicicans spend learning new songs.
 
 **Optional Nice-to-have Stories**
 
-* [ ] User can adjust pitch of audio
+* [x] User can adjust pitch of audio
 * [ ] Waveform view
 * [ ] A/B Looping
 * [x] User can filter low and high frequencies
