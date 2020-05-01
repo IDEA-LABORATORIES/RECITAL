@@ -61,6 +61,7 @@ class ControlPanelViewController: UIViewController {
             if (self.uiEnabled) {
                 // Playback
                 self.updatePlaybackPositionSlider()
+                self.update_waveform_pos()
                 self.currentPlaybackRate.text = String(format:"speed: %.02fx", self.customPlaybackRateSlider.thumbValue * 2)
             }
         })
@@ -103,6 +104,7 @@ class ControlPanelViewController: UIViewController {
         let waveformImageDrawer = WaveformImageDrawer()
         waveformImageDrawer.waveformImage(fromAudioAt: audioURL,
                                           size: waveformImageView.bounds.size,
+                                          color: .white,
                                           style: .striped,
                                           position: .middle) { image in
             // need to jump back to main queue
@@ -110,6 +112,13 @@ class ControlPanelViewController: UIViewController {
                 self.waveformImageView.image = image
             }
         }
+    }
+    
+    // Moves waveform to the left
+    func update_waveform_pos() {
+        let unitsPerSecond = (waveformImageView.frame.width/CGFloat(audioKitEngine.getAudioFileDuration()))
+        let waveform_x_transform = -1 * (waveformScrollView.center.x - (CGFloat(playbackPositionSlider.value) * unitsPerSecond))
+        waveformScrollView.setContentOffset(CGPoint(x: waveform_x_transform, y: 0), animated: false)
     }
     
     func initializeAudioEngine() {
