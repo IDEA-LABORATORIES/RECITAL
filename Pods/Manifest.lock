@@ -1,0 +1,25 @@
+PODS:
+  - AudioKit (4.9.5):
+    - AudioKit/Core (= 4.9.5)
+    - AudioKit/UI (= 4.9.5)
+  - AudioKit/Core (4.9.5)
+  - AudioKit/UI (4.9.5):
+    - AudioKit/Core
+  - DSWaveformImage (6.1.0)
+
+DEPENDENCIES:
+  - AudioKit (~> 4.0)
+  - DSWaveformImage (~> 6.1)
+
+SPEC REPOS:
+  trunk:
+    - AudioKit
+    - DSWaveformImage
+
+SPEC CHECKSUMS:
+  AudioKit: ccf4e39c89ed6e5cbbce5fef58d819db39446437
+  DSWaveformImage: 1c0041e8413a0bc25f73955211e5b73c9f35812d
+
+PODFILE CHECKSUM: ee7daf011de14352bb1ec61b9f4081aba4a6fa4c
+
+COCOAPODS: 1.9.0

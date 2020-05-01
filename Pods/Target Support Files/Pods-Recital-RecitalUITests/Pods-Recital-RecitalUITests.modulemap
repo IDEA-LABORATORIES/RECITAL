@@ -1,0 +1,6 @@
+framework module Pods_Recital_RecitalUITests {
+  umbrella header "Pods-Recital-RecitalUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
