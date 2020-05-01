@@ -20,6 +20,8 @@
 		BE8898972422B23E00B95706 /* RecitalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898962422B23E00B95706 /* RecitalTests.swift */; };
 		BE8898A22422B23F00B95706 /* RecitalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898A12422B23F00B95706 /* RecitalUITests.swift */; };
 		BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */; };
+		BE8898B4242540A700B95706 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B2242540A700B95706 /* AudioKitUI.framework */; };
+		BE8898B5242540A700B95706 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B3242540A700B95706 /* AudioKit.framework */; };
 		BE8898B72425441C00B95706 /* AudioSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898B62425441C00B95706 /* AudioSelector.swift */; };
 		DE871FC989DABCF163BD871C /* Pods_Recital_RecitalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D703D399466921A855422 /* Pods_Recital_RecitalUITests.framework */; };
 /* End PBXBuildFile section */
