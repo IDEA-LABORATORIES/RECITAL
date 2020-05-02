@@ -87,6 +87,14 @@ class AudioKitEngine {
         }
     }
     
+    public func setLoopPointA(posInAudio: Double) {
+        player.loop.start = posInAudio
+    }
+    
+    public func setLoopPointB(posInAudio: Double) {
+        player.loop.end = posInAudio
+    }
+    
     public func setPlaybackRate(sliderPos: Double) {
         timeManipulator.rate = sliderPos
     }

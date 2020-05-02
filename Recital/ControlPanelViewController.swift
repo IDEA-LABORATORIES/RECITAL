@@ -17,8 +17,13 @@ class ControlPanelViewController: UIViewController {
     var filterOn: Bool = false
     var loopingOn: Bool = true
     var lengthOfSong: String = ""
+    
+    //Playback
+    var currMin: Int!
+    var currSec: Int!
 
     // Outlets
+    //Playback
     @IBOutlet weak var waveformScrollView: UIScrollView!
     @IBOutlet weak var waveformImageView: UIImageView!
     
@@ -26,6 +31,7 @@ class ControlPanelViewController: UIViewController {
     @IBOutlet var playbackRateSliderView: UIView!
     let customPlaybackRateSlider = CustomSlider(frame: .zero)
     
+    //Pitch and Filter
     @IBOutlet weak var pitchShiftKnob: Knob!
     @IBOutlet weak var pitchShiftOnOffButton: UIButton!
     
@@ -35,12 +41,20 @@ class ControlPanelViewController: UIViewController {
     @IBOutlet weak var bandpassCenterFreqLabel: UILabel!
     @IBOutlet weak var bandpassBandwidthSliderLabel: UILabel!
     
+    // Playback
+    @IBOutlet weak var setLoopPointAButton: UIButton!
+    @IBOutlet weak var loopPointALabel: UILabel!
+    @IBOutlet weak var setLoopPointBButton: UIButton!
+    @IBOutlet weak var loopPointBLabel: UILabel!
+    @IBOutlet weak var resetLoopPointsButton: UIButton!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var loopingOnOffButton: UIButton!
     
     @IBOutlet weak var currentPosInSong: UILabel!
+    @IBOutlet weak var songDurationLabel: UILabel!
     @IBOutlet weak var currentPlaybackRate: UILabel!
     
+    // Audio Analysis
     @IBOutlet weak var noteFrequency: UILabel!
     @IBOutlet weak var noteNameWSharps: UILabel!
     
@@ -60,6 +74,8 @@ class ControlPanelViewController: UIViewController {
         updateSlidersTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (Timer) in
             if (self.uiEnabled) {
                 // Playback
+                self.currMin = (Int(self.playbackPositionSlider.value) / 60) % 60
+                self.currSec = Int(self.playbackPositionSlider.value) % 60
                 self.updatePlaybackPositionSlider()
                 self.update_waveform_pos()
                 self.currentPlaybackRate.text = String(format:"speed: %.02fx", self.customPlaybackRateSlider.thumbValue * 2)
@@ -97,6 +113,7 @@ class ControlPanelViewController: UIViewController {
         }
     }
     
+    // https://github.com/dmrschmidt/DSWaveformImage
     func drawWaveform() {
         let audioURL = audioSelector.getAudioSandboxURL()
         
@@ -139,6 +156,12 @@ class ControlPanelViewController: UIViewController {
         currentPosInSong.isEnabled = false
         currentPlaybackRate.isEnabled = false
         
+        setLoopPointAButton.isEnabled = false
+        loopPointALabel.isEnabled = false
+        setLoopPointBButton.isEnabled = false
+        loopPointBLabel.isEnabled = false
+        resetLoopPointsButton.isEnabled = false
+        
         // Filter & Pitch
         pitchShiftOnOffButton.isEnabled = false
         pitchShiftKnob.isEnabled = false
@@ -156,6 +179,7 @@ class ControlPanelViewController: UIViewController {
         let totalMin = Int(playbackPositionSlider.maximumValue) / 60 % 60
         let totalSec = Int(playbackPositionSlider.maximumValue) % 60
         lengthOfSong = String(format:"%02i:%02i", totalMin, totalSec)
+        songDurationLabel.text = lengthOfSong
         
         playPauseButton.isEnabled = true
         loopingOnOffButton.isEnabled = true
@@ -164,6 +188,13 @@ class ControlPanelViewController: UIViewController {
         currentPlaybackRate.isEnabled = true
         
         customPlaybackRateSlider.isEnabled = true
+        
+        setLoopPointAButton.isEnabled = true
+        loopPointALabel.isEnabled = true
+        setLoopPointBButton.isEnabled = true
+        loopPointBLabel.isEnabled = true
+        resetLoopPointsButton.isEnabled = true
+        loopPointBLabel.text = lengthOfSong
         
         pitchShiftOnOffButton.isEnabled = true
         pitchShiftKnob.isEnabled = true
@@ -187,11 +218,24 @@ class ControlPanelViewController: UIViewController {
     
     public func updatePlaybackPositionSlider() {
         playbackPositionSlider.value = audioKitEngine.getCurrentPositionInAudio()
-        let currMin = (Int(playbackPositionSlider.value) / 60) % 60
-        let currSec = Int(playbackPositionSlider.value) % 60
-        let currPIS = String(format:"%02i:%02i", currMin, currSec)
-        
-        currentPosInSong.text = currPIS + "/" + lengthOfSong
+        currentPosInSong.text = String(format:"%02i:%02i", currMin, currSec)
+    }
+    
+    @IBAction func handleLoopPointA(_ sender: UIButton) {
+        audioKitEngine.setLoopPointA(posInAudio: Double(playbackPositionSlider!.value))
+        loopPointALabel.text = String(format:"%02i:%02i", currMin, currSec)
+    }
+    
+    @IBAction func handleLoopPointB(_ sender: UIButton) {
+        audioKitEngine.setLoopPointB(posInAudio: Double(playbackPositionSlider!.value))
+        loopPointBLabel.text = String(format:"%02i:%02i", currMin, currSec)
+    }
+    
+    @IBAction func handleResetLoopPoints(_ sender: UIButton) {
+        audioKitEngine.setLoopPointA(posInAudio: 0.0)
+        loopPointALabel.text = "0:00"
+        audioKitEngine.setLoopPointB(posInAudio: audioKitEngine.getAudioFileDuration())
+        loopPointBLabel.text = lengthOfSong
     }
     
     func setupPlaybackRateSlider() {
