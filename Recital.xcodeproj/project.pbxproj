@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C18EE02E907DA2DC70CBC77 /* Pods_RecitalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5061C0580F0D2FFF4F166437 /* Pods_RecitalTests.framework */; };
-		5FBEB6E45A3486A0B461CE3A /* Pods_Recital.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11F91A0A031DBC2D2D292ED /* Pods_Recital.framework */; };
+		7313CDB30C48DDE7C0F9E4D5 /* Pods_Recital_RecitalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE017C0573F72AE1B6D6334E /* Pods_Recital_RecitalUITests.framework */; };
+		7A1101B3B919CCAD46A2BA7B /* Pods_Recital.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9118C1DF3FA70C3F6D554DD5 /* Pods_Recital.framework */; };
 		BE0429D7245CADA70022B8C6 /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0429D6245CADA70022B8C6 /* Knob.swift */; };
 		BE0429D9245CADC20022B8C6 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0429D8245CADC20022B8C6 /* CustomSlider.swift */; };
 		BE31A18E2425685400067063 /* AudioKitEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE31A18D2425685400067063 /* AudioKitEngine.swift */; };
@@ -20,10 +20,8 @@
 		BE8898972422B23E00B95706 /* RecitalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898962422B23E00B95706 /* RecitalTests.swift */; };
 		BE8898A22422B23F00B95706 /* RecitalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898A12422B23F00B95706 /* RecitalUITests.swift */; };
 		BE8898B02422B36600B95706 /* ControlPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */; };
-		BE8898B4242540A700B95706 /* AudioKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B2242540A700B95706 /* AudioKitUI.framework */; };
-		BE8898B5242540A700B95706 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8898B3242540A700B95706 /* AudioKit.framework */; };
 		BE8898B72425441C00B95706 /* AudioSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8898B62425441C00B95706 /* AudioSelector.swift */; };
-		DE871FC989DABCF163BD871C /* Pods_Recital_RecitalUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF9D703D399466921A855422 /* Pods_Recital_RecitalUITests.framework */; };
+		BFA63527432CD1A1FA6465D2 /* Pods_RecitalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EC389C06A5A130C551048A /* Pods_RecitalTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,13 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04B7EFCCCBB2DCE2644655DA /* Pods-RecitalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecitalTests.debug.xcconfig"; path = "Target Support Files/Pods-RecitalTests/Pods-RecitalTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5061C0580F0D2FFF4F166437 /* Pods_RecitalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecitalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71B54E4EF9122FFD0848B998 /* Pods-Recital-RecitalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital-RecitalUITests.debug.xcconfig"; path = "Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		99A2BB5BB111B4418A987D70 /* Pods-Recital.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital.release.xcconfig"; path = "Target Support Files/Pods-Recital/Pods-Recital.release.xcconfig"; sourceTree = "<group>"; };
-		AF9D703D399466921A855422 /* Pods_Recital_RecitalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recital_RecitalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B11F91A0A031DBC2D2D292ED /* Pods_Recital.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recital.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E4377AD3EA855FA491BA0F /* Pods-Recital-RecitalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital-RecitalUITests.release.xcconfig"; path = "Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests.release.xcconfig"; sourceTree = "<group>"; };
+		209F64147C8B472A020CDF91 /* Pods-Recital-RecitalUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital-RecitalUITests.debug.xcconfig"; path = "Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D9848BF662E1D9F1E6DAB72 /* Pods-Recital.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital.release.xcconfig"; path = "Target Support Files/Pods-Recital/Pods-Recital.release.xcconfig"; sourceTree = "<group>"; };
+		47EC389C06A5A130C551048A /* Pods_RecitalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RecitalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48F417D41C426ADDE133B01D /* Pods-RecitalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecitalTests.release.xcconfig"; path = "Target Support Files/Pods-RecitalTests/Pods-RecitalTests.release.xcconfig"; sourceTree = "<group>"; };
+		883A50B0BF7D7D84AFE0CC15 /* Pods-RecitalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecitalTests.debug.xcconfig"; path = "Target Support Files/Pods-RecitalTests/Pods-RecitalTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9118C1DF3FA70C3F6D554DD5 /* Pods_Recital.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recital.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE017C0573F72AE1B6D6334E /* Pods_Recital_RecitalUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recital_RecitalUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE0429D6245CADA70022B8C6 /* Knob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		BE0429D8245CADC20022B8C6 /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		BE31A18D2425685400067063 /* AudioKitEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitEngine.swift; sourceTree = "<group>"; };
@@ -68,11 +66,9 @@
 		BE8898A12422B23F00B95706 /* RecitalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecitalUITests.swift; sourceTree = "<group>"; };
 		BE8898A32422B23F00B95706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanelViewController.swift; sourceTree = "<group>"; };
-		BE8898B2242540A700B95706 /* AudioKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKitUI.framework; path = Recital/AudioKitUI.framework; sourceTree = "<group>"; };
-		BE8898B3242540A700B95706 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Recital/AudioKit.framework; sourceTree = "<group>"; };
 		BE8898B62425441C00B95706 /* AudioSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSelector.swift; sourceTree = "<group>"; };
-		C6190468CF47A729E2CD00D9 /* Pods-RecitalTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecitalTests.release.xcconfig"; path = "Target Support Files/Pods-RecitalTests/Pods-RecitalTests.release.xcconfig"; sourceTree = "<group>"; };
-		C7B443DFF7FD679BB6D3B15A /* Pods-Recital.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital.debug.xcconfig"; path = "Target Support Files/Pods-Recital/Pods-Recital.debug.xcconfig"; sourceTree = "<group>"; };
+		CE845B1B07956938F869E795 /* Pods-Recital.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital.debug.xcconfig"; path = "Target Support Files/Pods-Recital/Pods-Recital.debug.xcconfig"; sourceTree = "<group>"; };
+		D4939E9849421D8AB6FE9558 /* Pods-Recital-RecitalUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recital-RecitalUITests.release.xcconfig"; path = "Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FBEB6E45A3486A0B461CE3A /* Pods_Recital.framework in Frameworks */,
+				7A1101B3B919CCAD46A2BA7B /* Pods_Recital.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C18EE02E907DA2DC70CBC77 /* Pods_RecitalTests.framework in Frameworks */,
+				BFA63527432CD1A1FA6465D2 /* Pods_RecitalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE871FC989DABCF163BD871C /* Pods_Recital_RecitalUITests.framework in Frameworks */,
+				7313CDB30C48DDE7C0F9E4D5 /* Pods_Recital_RecitalUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,15 +102,24 @@
 		125E5CF72A7BA186F64C3F97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C7B443DFF7FD679BB6D3B15A /* Pods-Recital.debug.xcconfig */,
-				99A2BB5BB111B4418A987D70 /* Pods-Recital.release.xcconfig */,
-				71B54E4EF9122FFD0848B998 /* Pods-Recital-RecitalUITests.debug.xcconfig */,
-				B3E4377AD3EA855FA491BA0F /* Pods-Recital-RecitalUITests.release.xcconfig */,
-				04B7EFCCCBB2DCE2644655DA /* Pods-RecitalTests.debug.xcconfig */,
-				C6190468CF47A729E2CD00D9 /* Pods-RecitalTests.release.xcconfig */,
+				CE845B1B07956938F869E795 /* Pods-Recital.debug.xcconfig */,
+				2D9848BF662E1D9F1E6DAB72 /* Pods-Recital.release.xcconfig */,
+				209F64147C8B472A020CDF91 /* Pods-Recital-RecitalUITests.debug.xcconfig */,
+				D4939E9849421D8AB6FE9558 /* Pods-Recital-RecitalUITests.release.xcconfig */,
+				883A50B0BF7D7D84AFE0CC15 /* Pods-RecitalTests.debug.xcconfig */,
+				48F417D41C426ADDE133B01D /* Pods-RecitalTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		B6126A0DF0D0B42196E065FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9118C1DF3FA70C3F6D554DD5 /* Pods_Recital.framework */,
+				AE017C0573F72AE1B6D6334E /* Pods_Recital_RecitalUITests.framework */,
+				47EC389C06A5A130C551048A /* Pods_RecitalTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BE8898732422B23D00B95706 = {
@@ -124,8 +129,8 @@
 				BE8898952422B23E00B95706 /* RecitalTests */,
 				BE8898A02422B23F00B95706 /* RecitalUITests */,
 				BE88987D2422B23E00B95706 /* Products */,
-				BE8898B1242540A700B95706 /* Frameworks */,
 				125E5CF72A7BA186F64C3F97 /* Pods */,
+				B6126A0DF0D0B42196E065FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,18 +180,6 @@
 			path = RecitalUITests;
 			sourceTree = "<group>";
 		};
-		BE8898B1242540A700B95706 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BE8898B3242540A700B95706 /* AudioKit.framework */,
-				BE8898B2242540A700B95706 /* AudioKitUI.framework */,
-				B11F91A0A031DBC2D2D292ED /* Pods_Recital.framework */,
-				AF9D703D399466921A855422 /* Pods_Recital_RecitalUITests.framework */,
-				5061C0580F0D2FFF4F166437 /* Pods_RecitalTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,11 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8898A62422B23F00B95706 /* Build configuration list for PBXNativeTarget "Recital" */;
 			buildPhases = (
-				D04FEE1C5B892215C8C1F082 /* [CP] Check Pods Manifest.lock */,
+				1ED1C1AC94417D00E53CD967 /* [CP] Check Pods Manifest.lock */,
 				BE8898782422B23E00B95706 /* Sources */,
 				BE8898792422B23E00B95706 /* Frameworks */,
 				BE88987A2422B23E00B95706 /* Resources */,
-				75EE58C213EA39C2EB9469FD /* [CP] Embed Pods Frameworks */,
+				B946DE44423242A8336AD05A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,7 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8898A92422B23F00B95706 /* Build configuration list for PBXNativeTarget "RecitalTests" */;
 			buildPhases = (
-				8F0C9EA021BFAFC08FEB2DE6 /* [CP] Check Pods Manifest.lock */,
+				82EB59B266F9323EE83CA5B5 /* [CP] Check Pods Manifest.lock */,
 				BE88988E2422B23E00B95706 /* Sources */,
 				BE88988F2422B23E00B95706 /* Frameworks */,
 				BE8898902422B23E00B95706 /* Resources */,
@@ -232,11 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8898AC2422B23F00B95706 /* Build configuration list for PBXNativeTarget "RecitalUITests" */;
 			buildPhases = (
-				E6BB88F3BC919C4638853F81 /* [CP] Check Pods Manifest.lock */,
+				C154AB4317D0DD6192542F3C /* [CP] Check Pods Manifest.lock */,
 				BE8898992422B23F00B95706 /* Sources */,
 				BE88989A2422B23F00B95706 /* Frameworks */,
 				BE88989B2422B23F00B95706 /* Resources */,
-				2CD3645AE549934A104FE001 /* [CP] Embed Pods Frameworks */,
+				7FB85F348EAE46A7F1581C64 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -319,63 +312,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2CD3645AE549934A104FE001 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		75EE58C213EA39C2EB9469FD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F0C9EA021BFAFC08FEB2DE6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RecitalTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D04FEE1C5B892215C8C1F082 /* [CP] Check Pods Manifest.lock */ = {
+		1ED1C1AC94417D00E53CD967 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -397,7 +334,63 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E6BB88F3BC919C4638853F81 /* [CP] Check Pods Manifest.lock */ = {
+		7FB85F348EAE46A7F1581C64 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Recital-RecitalUITests/Pods-Recital-RecitalUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		82EB59B266F9323EE83CA5B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RecitalTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B946DE44423242A8336AD05A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Recital/Pods-Recital-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C154AB4317D0DD6192542F3C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -603,7 +596,7 @@
 		};
 		BE8898A72422B23F00B95706 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7B443DFF7FD679BB6D3B15A /* Pods-Recital.debug.xcconfig */;
+			baseConfigurationReference = CE845B1B07956938F869E795 /* Pods-Recital.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -613,6 +606,7 @@
 					"$(PROJECT_DIR)/Recital",
 				);
 				INFOPLIST_FILE = Recital/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -627,7 +621,7 @@
 		};
 		BE8898A82422B23F00B95706 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99A2BB5BB111B4418A987D70 /* Pods-Recital.release.xcconfig */;
+			baseConfigurationReference = 2D9848BF662E1D9F1E6DAB72 /* Pods-Recital.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -637,6 +631,7 @@
 					"$(PROJECT_DIR)/Recital",
 				);
 				INFOPLIST_FILE = Recital/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -651,7 +646,7 @@
 		};
 		BE8898AA2422B23F00B95706 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04B7EFCCCBB2DCE2644655DA /* Pods-RecitalTests.debug.xcconfig */;
+			baseConfigurationReference = 883A50B0BF7D7D84AFE0CC15 /* Pods-RecitalTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -674,7 +669,7 @@
 		};
 		BE8898AB2422B23F00B95706 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6190468CF47A729E2CD00D9 /* Pods-RecitalTests.release.xcconfig */;
+			baseConfigurationReference = 48F417D41C426ADDE133B01D /* Pods-RecitalTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -697,7 +692,7 @@
 		};
 		BE8898AD2422B23F00B95706 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71B54E4EF9122FFD0848B998 /* Pods-Recital-RecitalUITests.debug.xcconfig */;
+			baseConfigurationReference = 209F64147C8B472A020CDF91 /* Pods-Recital-RecitalUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -718,7 +713,7 @@
 		};
 		BE8898AE2422B23F00B95706 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3E4377AD3EA855FA491BA0F /* Pods-Recital-RecitalUITests.release.xcconfig */;
+			baseConfigurationReference = D4939E9849421D8AB6FE9558 /* Pods-Recital-RecitalUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
