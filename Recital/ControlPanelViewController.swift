@@ -120,7 +120,7 @@ class ControlPanelViewController: UIViewController {
         // Waveform image drawer (takes ~15 seconds)
         let waveformImageDrawer = WaveformImageDrawer()
         waveformImageDrawer.waveformImage(fromAudioAt: audioURL,
-                                          size: waveformImageView.bounds.size,
+                                          size: waveformImageView.frame.size,
                                           color: .white,
                                           style: .striped,
                                           position: .middle) { image in
@@ -252,29 +252,30 @@ class ControlPanelViewController: UIViewController {
         audioKitEngine.setPlaybackRate(sliderPos: Double((customSlider.thumbValue) * 2))
     }
     
+    // #imageLiteral(resourceName: "play_button")
     // TODO: Changing volume on simulator breaks play.
     @IBAction func onPlay(_ sender: UIButton) {
         if (playPauseToggle == 0) {
             audioKitEngine.play()
             playPauseToggle = 1;
-            sender.setTitle("Pause", for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "pause_button"), for: .normal)
         } else {
             audioKitEngine.pause(sliderPos: Double(playbackPositionSlider!.value))
             playPauseToggle = 0
-            sender.setTitle("Play", for: .normal)
+            sender.setImage(#imageLiteral(resourceName: "play_button"), for: .normal)
         }
     }
-    
     
     @IBAction func handleLoopingOnOff(_ sender: UIButton) {
         if (loopingOn) {
             audioKitEngine.toggleLooping(loop: false)
             loopingOn = false
+            loopingOnOffButton.setImage(#imageLiteral(resourceName: "loop_off_button"), for: .normal)
         } else {
             audioKitEngine.toggleLooping(loop: true)
             loopingOn = true
+            loopingOnOffButton.setImage(#imageLiteral(resourceName: "loop_on_button"), for: .normal)
         }
-        
     }
     
     // Filter & Pitch
