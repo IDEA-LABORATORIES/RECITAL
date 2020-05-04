@@ -67,7 +67,7 @@ class CustomSlider: UIControl {
     // 1
     private func updateSliderFrames() {
         track.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 223, height: 66))
-        thumbImageView.frame = CGRect(origin: thumbOriginForValue(thumbValue), size: thumbImage.size)
+        thumbImageView.frame = CGRect(origin: thumbOriginForValue(thumbValue), size: CGSize(width: thumbImage.size.width, height: thumbImage.size.height - 2))
     }
     
     // 2
@@ -78,7 +78,7 @@ class CustomSlider: UIControl {
     // 3
     private func thumbOriginForValue(_ value: CGFloat) -> CGPoint {
         let x = positionForValue(value) - thumbImage.size.width / 2.0
-        return CGPoint(x: x, y: (bounds.height - thumbImage.size.height) / 2.0)
+        return CGPoint(x: x, y: (bounds.height - (thumbImage.size.height - 10)) / 2.0)
     }
 }
 

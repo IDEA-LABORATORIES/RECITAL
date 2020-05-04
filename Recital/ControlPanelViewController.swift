@@ -35,6 +35,7 @@ class ControlPanelViewController: UIViewController {
     
     //Pitch and Filter
     @IBOutlet weak var pitchShiftKnob: Knob!
+    @IBOutlet weak var pitchShiftLabel: UILabel!
     @IBOutlet weak var pitchShiftOnOffButton: UIButton!
     
     @IBOutlet weak var filterOnOffButton: UIButton!
@@ -328,6 +329,7 @@ class ControlPanelViewController: UIViewController {
     
     @IBAction func handlePitchShit(_ sender: Knob) {
         audioKitEngine.shiftPitch(value: Double(pitchShiftKnob.value))
+        pitchShiftLabel.text = String(format: "%0.0fc", pitchShiftKnob.value)
     }
     
     @IBAction func changeBandpassCenterFreq(_ sender: Knob) {
@@ -337,7 +339,7 @@ class ControlPanelViewController: UIViewController {
     
     @IBAction func changeBandpassBandwidth(_ sender: Knob) {
         audioKitEngine.setBandPassFilterBandwidth(bandwidthSliderPos: Double(bandpassBandwidthKnob.value))
-            updateFilterUI()
+        updateFilterUI()
     }
     
     @IBAction func handleFilterOnOff(_ sender: UIButton) {
@@ -353,8 +355,8 @@ class ControlPanelViewController: UIViewController {
     }
     
     func updateFilterUI() {
-        bandpassCenterFreqLabel.text = String(format: "Center Freq: %0.1f Hz", bandpassCenterFreqKnob.value)
-        bandpassBandwidthSliderLabel.text = String(format: "Bandwidth: %0.1f Hz", bandpassBandwidthKnob.value)
+        bandpassCenterFreqLabel.text = String(format: "%0.1fHz", bandpassCenterFreqKnob.value)
+        bandpassBandwidthSliderLabel.text = String(format: "%0.1fHz", bandpassBandwidthKnob.value)
     }
     
     // Audio Analysis
