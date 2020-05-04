@@ -17,6 +17,8 @@ class ControlPanelViewController: UIViewController {
     var filterOn: Bool = false
     var loopingOn: Bool = true
     var lengthOfSong: String = ""
+    var loopPointAValue: Double = 0
+    var loopPointBValue: Double!
     
     //Playback
     var currMin: Int!
@@ -90,7 +92,7 @@ class ControlPanelViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         let width = 382
-      let height: CGFloat = 68
+        let height: CGFloat = 68
       
         customPlaybackRateSlider.frame = CGRect(x: 0, y: 614, width: width, height: Int(height))
         customPlaybackRateSlider.center = playbackRateSliderView.center
@@ -141,10 +143,15 @@ class ControlPanelViewController: UIViewController {
     func initializeAudioEngine() {
         audioKitEngine = AudioKitEngine(audioSandboxFileURL: audioSelector.getAudioSandboxURL())
         // Decide what happens when file reaches end and loop is off.
+        updatePlayerCompletionHandler()
+    }
+    
+    func updatePlayerCompletionHandler() {
+        print("\nPlayback Completion Handler\n")
         audioKitEngine.getAudioPlayer().completionHandler = {
             self.audioKitEngine.getAudioPlayer().setPosition(0)
             self.playPauseToggle = 0
-            self.playPauseButton.setTitle("Play", for: .normal)
+            self.playPauseButton.setImage(#imageLiteral(resourceName: "play_button"), for: .normal)
         }
     }
     
@@ -175,6 +182,7 @@ class ControlPanelViewController: UIViewController {
     func enableUI() {
         playbackPositionSlider.isEnabled = true;
         playbackPositionSlider.maximumValue = Float(audioKitEngine.getAudioFileDuration())
+        loopPointBValue = Double(playbackPositionSlider.maximumValue)
         
         let totalMin = Int(playbackPositionSlider.maximumValue) / 60 % 60
         let totalSec = Int(playbackPositionSlider.maximumValue) % 60
@@ -222,19 +230,28 @@ class ControlPanelViewController: UIViewController {
     }
     
     @IBAction func handleLoopPointA(_ sender: UIButton) {
-        audioKitEngine.setLoopPointA(posInAudio: Double(playbackPositionSlider!.value))
-        loopPointALabel.text = String(format:"%02i:%02i", currMin, currSec)
+        if (Double(playbackPositionSlider!.value) < loopPointBValue) {
+            audioKitEngine.setLoopPointA(posInAudio: Double(playbackPositionSlider!.value))
+            loopPointALabel.text = String(format:"%02i:%02i", currMin, currSec)
+            loopPointAValue = Double(playbackPositionSlider!.value)
+        }
     }
     
     @IBAction func handleLoopPointB(_ sender: UIButton) {
-        audioKitEngine.setLoopPointB(posInAudio: Double(playbackPositionSlider!.value))
-        loopPointBLabel.text = String(format:"%02i:%02i", currMin, currSec)
+        if (Double(playbackPositionSlider!.value) > loopPointAValue) {
+            audioKitEngine.setLoopPointB(posInAudio: Double(playbackPositionSlider!.value), loopPointAValue: loopPointAValue)
+            loopPointBLabel.text = String(format:"%02i:%02i", currMin, currSec)
+            loopPointBValue = Double(playbackPositionSlider!.value)
+            updatePlayerCompletionHandler()
+        }
     }
     
     @IBAction func handleResetLoopPoints(_ sender: UIButton) {
-        audioKitEngine.setLoopPointA(posInAudio: 0.0)
+        loopPointAValue = 0
+        audioKitEngine.setLoopPointA(posInAudio: loopPointAValue)
         loopPointALabel.text = "0:00"
-        audioKitEngine.setLoopPointB(posInAudio: audioKitEngine.getAudioFileDuration())
+        loopPointBValue = audioKitEngine.getAudioFileDuration()
+        audioKitEngine.setLoopPointB(posInAudio: loopPointBValue, loopPointAValue: loopPointAValue)
         loopPointBLabel.text = lengthOfSong
     }
     
@@ -271,6 +288,7 @@ class ControlPanelViewController: UIViewController {
             audioKitEngine.toggleLooping(loop: false)
             loopingOn = false
             loopingOnOffButton.setImage(#imageLiteral(resourceName: "loop_off_button"), for: .normal)
+            audioKitEngine.getAudioPlayer().endTime = audioKitEngine.getAudioFileDuration()
         } else {
             audioKitEngine.toggleLooping(loop: true)
             loopingOn = true
@@ -306,7 +324,6 @@ class ControlPanelViewController: UIViewController {
             pitchShiftOn = true
             sender.setImage(UIImage(named: "power_btn_on.png")!, for: .normal)
         }
-        
     }
     
     @IBAction func handlePitchShit(_ sender: Knob) {

@@ -91,8 +91,18 @@ class AudioKitEngine {
         player.loop.start = posInAudio
     }
     
-    public func setLoopPointB(posInAudio: Double) {
+    public func setLoopPointB(posInAudio: Double, loopPointAValue: Double) {
         player.loop.end = posInAudio
+        // Doesent work because This is gonna be like another play button
+        if (player.isLooping) {
+            if (player.isPlaying) {
+                player.stop()
+                player.setPosition(loopPointAValue)
+                player.play()
+            } else {
+                player.setPosition(loopPointAValue)
+            }
+        }
     }
     
     public func setPlaybackRate(sliderPos: Double) {
