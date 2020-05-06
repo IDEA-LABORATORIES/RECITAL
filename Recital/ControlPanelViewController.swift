@@ -173,11 +173,15 @@ class ControlPanelViewController: UIViewController {
         // Filter & Pitch
         pitchShiftOnOffButton.isEnabled = false
         pitchShiftKnob.isEnabled = false
+        pitchShiftLabel.isEnabled = false
         bandpassCenterFreqKnob.isEnabled = false
         bandpassCenterFreqLabel.isEnabled = false
         bandpassBandwidthKnob.isEnabled = false
         bandpassBandwidthSliderLabel.isEnabled = false
         filterOnOffButton.isEnabled = false
+        
+        noteFrequency.isEnabled = false
+        noteNameWSharps.isEnabled = false
     }
     
     func enableUI() {
@@ -207,11 +211,15 @@ class ControlPanelViewController: UIViewController {
         
         pitchShiftOnOffButton.isEnabled = true
         pitchShiftKnob.isEnabled = true
+        pitchShiftLabel.isEnabled = true
         bandpassCenterFreqKnob.isEnabled = true
         bandpassCenterFreqLabel.isEnabled = true
         bandpassBandwidthKnob.isEnabled = true
         bandpassBandwidthSliderLabel.isEnabled = true
         filterOnOffButton.isEnabled = true
+        
+        noteFrequency.isEnabled = true
+        noteNameWSharps.isEnabled = true
         
         uiEnabled = true
     }
