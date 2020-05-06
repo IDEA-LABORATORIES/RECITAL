@@ -161,8 +161,8 @@
 				BE88988A2422B23E00B95706 /* LaunchScreen.storyboard */,
 				BE88988D2422B23E00B95706 /* Info.plist */,
 				BE8898AF2422B36600B95706 /* ControlPanelViewController.swift */,
-				BE8898B62425441C00B95706 /* AudioSelector.swift */,
 				BE31A18D2425685400067063 /* AudioKitEngine.swift */,
+				BE8898B62425441C00B95706 /* AudioSelector.swift */,
 			);
 			path = Recital;
 			sourceTree = "<group>";
