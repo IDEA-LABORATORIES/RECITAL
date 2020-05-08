@@ -17,6 +17,34 @@ Recital is helps musicians practicing songs that may not have conventional music
 
 You can use any Apple audio file such as WAV, MP3 or M4A.
 
+#### Customer Discovery
+Customer Segment: Musicians (Guitarists, Pianists, Violinists)
+
+Customer Interviews: 51 interviews with musicians and music teachers.
+
+#### Problems Indentified
+##### Inaccurate / lack of music notation particularly  for contemporary music.
+* 8/38 players
+
+##### Lack of musical skill/knowledge particularly ear training because it is boring.
+* 10/38 players
+
+#### Interview Questions
+* What is your name? 
+* What is your age? 
+* How long have you played your instrument? 
+* What is your goal in learning/playing this instrument? For example, learning to play songs.
+* Can you walk me through your process for your stated goal?
+* What barriers have you encountered while working towards these goals 
+* What is frustrating when working to overcome these barriers? 
+* Is there anything you wish you had to help?
+* Follow up with 5 Whys or other relevant questions.
+
+#### Revenue Model
+* Freemium
+
+
+
 ## Product Spec
 
 ### User Stories (Required and Optional)
@@ -56,6 +84,8 @@ You can use any Apple audio file such as WAV, MP3 or M4A.
 | AudioFile | File | File of the audio selected by the user |
 | AudioSpeed | Float | Speed of the audio playback set by user |
 | AudioPitch | Float | Pitch/Key of the audio algorithmically analyzed and presented to the user in real time |
+| FilterFrequency | Float | Frequency user wants to hear |
+| FilterWidth | Float | Width of bandwidth filter |
 
 ### Networking
 N/A
