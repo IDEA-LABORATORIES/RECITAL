@@ -1,5 +1,4 @@
 # Recital: Music speed changer and transcriber
-<img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/logo_white.png" width=600>
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
@@ -7,7 +6,6 @@
 1. [Schema](#Schema)
 1. [Video Walkthrough](#Video-Walkthrough)
 2. [UI Progress](#UI-Progress)
-
 
 ## Overview
 ### Description (Business Thesis)
