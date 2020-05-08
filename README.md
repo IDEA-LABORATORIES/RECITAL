@@ -1,57 +1,54 @@
-MAD Final Project
-===
-
-# Recital
-
+# Recital: Music speed changer and transcriber
+<img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/logo_white.png" width=600>
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 1. [Schema](#Schema)
 1. [Video Walkthrough](#Video-Walkthrough)
+2. [UI Progress](#UI-Progress)
 
 
 ## Overview
-### Description
-Recital reduces the amount of time musicicans spend learning new songs.
+### Description (Business Thesis)
+Musicians will use 
+Recitals speed changing and note transcription to 
+learn songs faster.
+
+Recital is helps musicians practicing songs that may not have conventional music notations such as sheet music or tablature by providing realtime transcription and the ability to change audio speed/pitch.
+
+You can use any Apple audio file such as WAV, MP3 or M4A.
 
 ## Product Spec
 
-### 1. User Stories (Required and Optional)
-
+### User Stories (Required and Optional)
 **Required Must-have Stories**
-
-* [x] User can play audio files.
-* [x] User can seek through audio.
-* [x] User can slow down music and audio.
-* [x] User is shown note values in real time.
+* [x] Playback - Use audio player to playback file.
+* [x] Transcription - View audio note values in real time.
+* [x] Speed Change - Change speed of audio from .25 to 2 times the original speed.
+* [x] Bandwidth Filter - Filter desired frequencies.
+* [x] Waveform View - View waveform of audio synchronized with playback.
+* [x] A/B Looping - Loop selected section of audio. 
+* [x] Pitch Shift - Shift pitch up or down up to 24 semi-tones 
 
 **Optional Nice-to-have Stories**
-
-* [x] User can adjust pitch of audio
-* [x] Waveform view
-* [ ] A/B Looping
-* [x] User can filter low and high frequencies
 * [ ] User can save edited audio
 
-### 2. Screen Archetypes
+### Screen Archetypes
 
-* Editor / Control Panel (airplane)
+* Recital View Controller
 * File Selection
 
-### 3. Navigation
+### Navigation
 
 **Flow Navigation** (Screen to Screen)
 
-* Control Panel
-   * => File Selection
+* Recital View Controller => File Selection
 
-* File Selection
-   * => Control Panel
+* File Selection => Recital View Controller
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/Wireframe_sketch.jpeg" width=600>
+<img src="https://github.com/IDEA-LABORATORIES/RECITAL/blob/master/handsketch_to_illustrator.png" width=600>
 
 ## Schema 
 ### Models
@@ -66,14 +63,26 @@ Recital reduces the amount of time musicicans spend learning new songs.
 N/A
 
 ## Video Walkthrough
-### User can play and seek through their selected audio file
+### Playback - Use audio player to playback file.
+<a href="https://imgflip.com/gif/40ksh3"><img src="https://i.imgflip.com/40ksh3.gif" title=""/></a>
+### Transcription - View audio note values in real time.
+<a href="https://imgflip.com/gif/40ksvm"><img src="https://i.imgflip.com/40ksvm.gif" title=""/></a>
+### Speed Change - Change speed of audio from .25 to 2 times the original speed.
+<a href="https://imgflip.com/gif/40ktcw"><img src="https://i.imgflip.com/40ktcw.gif" title=""/></a>
+### Bandwidth Filter - Filter desired frequencies.
+<a href="https://imgflip.com/gif/40mk1d"><img src="https://i.imgflip.com/40mk1d.gif" title=""/></a>
+### Waveform View - View waveform of audio synchronized with playback.
+<a href="https://imgflip.com/gif/40mk93"><img src="https://i.imgflip.com/40mk93.gif" title=""/></a>
+### A/B Looping - Loop selected section of audio.
+<a href="https://imgflip.com/gif/40mkdd"><img src="https://i.imgflip.com/40mkdd.gif" title=""/></a>
+### Pitch Shift - Shift pitch up or down up to 24 semi-tones.
+<a href="https://imgflip.com/gif/40mkk2"><img src="https://i.imgflip.com/40mkk2.gif" title=""/></a>
+
+## UI Progress
 <a href="https://imgflip.com/gif/3vrn7e"><img src="https://i.imgflip.com/3vrn7e.gif" title=""/></a>
 
-### User can change rate of audio playback
 <a href="https://imgflip.com/gif/3x410e"><img src="https://i.imgflip.com/3x410e.gif" title=""/></a>
 
-### User can view notes of song in realtime
 <a href="https://imgflip.com/gif/3x5v89"><img src="https://i.imgflip.com/3x5v89.gif" title=""/></a>
 
-### User can filter high and low frequencies
 <a href="https://imgflip.com/gif/3xk9j0"><img src="https://i.imgflip.com/3xk9j0.gif" title=""/></a>
