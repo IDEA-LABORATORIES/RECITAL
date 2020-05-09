@@ -7,6 +7,9 @@
 1. [Video Walkthrough](#Video-Walkthrough)
 2. [UI Progress](#UI-Progress)
 
+### Demo Video
+https://youtu.be/I-L5-uk74iM
+
 ## Overview
 ### Description (Business Thesis)
 Musicians will use 
